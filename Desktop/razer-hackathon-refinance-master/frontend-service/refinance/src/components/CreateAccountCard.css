@@ -1,0 +1,17 @@
+.createAccountCard {
+  min-width: 300px;
+  max-width: 30%;
+  height: 500px;
+  margin: 10px;
+  padding: 20px;
+}
+
+.createAccountCard__header {
+  font-weight: 500;
+  font-size: 1.5em;
+  margin-bottom: 10%;
+}
+
+.createAccountCard__textField {
+  width: 100%;
+}
