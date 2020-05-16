@@ -3,8 +3,18 @@ import BottomNavBar from "../components/BottomNavBar";
 import QuestCard, {QuestModal} from "../components/QuestCard";
 import Hero from "../components/Hero";
 import Section from "../components/Section";
+import {IoIosCheckmarkCircleOutline, IoIosBulb, IoMdStopwatch} from 'react-icons/io';
+
+import "./Quests.css"
 
 const defaultQuests = [
+    {
+        name: "Create account",
+        progress: 1,
+        criteria: 1,
+        exp: 500,
+        description: "Hooray, you joined us! It's such a momentous event that it's even helped you clear your first quest!"
+    },
     {
         name: "Direct credit your salary",
         progress: 2,
@@ -30,37 +40,94 @@ const defaultQuests = [
 ];
 
 const Quests = ({quests=defaultQuests, handleNav}) => {
-    const inProgress = quests.filter(q => q.progress > 0);
-    const newQuests = quests.filter(q => q.progress == 0);
+    const qs = {
+        completed: {
+            name: "Completed",
+            quests: [],
+            icon: IoIosCheckmarkCircleOutline,
+        },
+        inProgress: {
+            name: "In Progress",
+            quests: [],
+            icon: IoMdStopwatch,
+        },
+        newQuests: {
+            name: "New",
+            quests: [],
+            icon: IoIosBulb,
+        },
+        collected: {
+            name: "Past Quests",
+            quests: [],
+            icon: IoIosCheckmarkCircleOutline,
+        },
+    }
+    quests.forEach((q) => {
+        if (q.completed) {
+            qs.collected.quests.push(q)
+        } else {
+            if ( q.progress === q.criteria) {
+                qs.completed.quests.push(q)
+            }
+            if ( q.progress > 0 && q.progress !== q.criteria) {
+                qs.inProgress.quests.push(q)
+            }
+            if ( q.progress === 0) {
+                qs.newQuests.quests.push(q)
+            }
+        }
+    })
     const [openQuest, setOpenQuest] = useState({})
+    const [modalOpen, setModalOpen] = useState(false);
+    const handleClick = (q) => {
+        setOpenQuest(q);
+        setModalOpen(true);
+    }
     return (
     <div className="page">
         <Hero
             backgroundImage={"/hero_quest.jpg"}
             heroContent={
                 <div>
-                    <h1>{`You have ${inProgress.length} in progress, ${newQuests.length} new quests`}</h1>
+                    <h2 style={{marginBottom: "0px"}}>Quests</h2>
+                    <span className="quests-status-container">
+                        {Object.values(qs).filter(c => c.name !== "Past Quests" && c.quests.length > 0)
+                            .map(({name, quests, icon}) => {
+                                return (
+                                    <div className={"quests-status"}>
+                                        <div className={"quests-quantity"}>
+                                            {icon()}
+                                            <p>{quests.length} </p>
+                                        </div>
+                                        <p>{name} </p>
+                                    </div>
+                                )
+                            })}
+                    </span>
                 </div>
             }
             navbarContent={
-                <div>
-                    <p>{`${inProgress.length} in progress, ${newQuests.length} new`}</p>
+                <div className={"quests-navbar"}>
+                    {
+                        Object.values(qs).filter(c => c.name !== "Past Quests" && c.quests.length > 0)
+                            .map(({ quests, icon}) => (
+                                <div>
+                                    {icon()}
+                                    <p>{quests.length} </p>
+                                </div>
+                            ))
+                    }
                 </div>
             }
         />
         <div className="content">
-            {inProgress.length > 0 ?
-                <Section section="In Progress" >
-                    {inProgress.map(q => <QuestCard quest={q} handleClick={() => setOpenQuest(q)}/>)}
-                </Section> : ""
-            }
-            {newQuests.length > 0 ?
-                <Section section="New" >
-                    {newQuests.map(q => <QuestCard quest={q} handleClick={() => setOpenQuest(q)}/>)}
-                </Section> : ""
-            }
+            {Object.values(qs).filter(cat => cat.quests.length > 0).map(({name, quests}) => (
+                <Section section={name} >
+                    {quests.map((q, i) => <QuestCard quest={q} key={i} handleClick={() => handleClick(q)}/>)}
+                </Section>
+            ))}
         </div>
-        <QuestModal open={!!!!Object.keys(openQuest).length} quest={openQuest} handleClose={() => setOpenQuest({})} />
+        <QuestModal open={modalOpen} quest={openQuest} handleClose={() => setModalOpen(false)} />
         <BottomNavBar active={"quests"} handleNav={handleNav} />
     </div>
 )}

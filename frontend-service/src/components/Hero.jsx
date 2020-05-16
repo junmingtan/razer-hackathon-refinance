@@ -26,6 +26,7 @@ const Hero = ({
             setFadeOut(ref.current.offsetHeight - bottom)
             setFadeIn( calcFadeIn(ref.current.offsetHeight, bottom))
         }
+        return () => document.onscroll = null;
     })
     const [fadeOut, setFadeOut] = useState(0);
     const [fadeIn, setFadeIn] = useState(0);
