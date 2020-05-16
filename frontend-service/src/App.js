@@ -8,6 +8,9 @@ import "./App.css";
 import Home from "./pages/Home";
 import Perks from "./pages/Perks";
 import LandingPage from "./pages/LandingPage";
+import Quests from "./pages/Quests";
+import Transfer from "./pages/Transfer";
+import History from "./pages/History";
 
 class App extends Component {
   state = {
@@ -26,6 +29,12 @@ class App extends Component {
         return <LandingPage handleNav={this.handleChangePage} />;
       case "perks":
         return <Perks handleNav={this.handleChangePage} />;
+      case "quests":
+        return <Quests handleNav={this.handleChangePage} />;
+      case "transfer":
+        return <Transfer handleNav={this.handleChangePage} />;
+      case "history":
+        return <History handleNav={this.handleChangePage} />;
     }
   };
   render() {
