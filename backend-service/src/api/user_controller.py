@@ -60,5 +60,7 @@ def login():
 @user_api.route('/user/all', methods=['GET'])
 def allUsers():
     success, db_result = db_lite.getAllUsers()
+    if not success:
+        return jsonify(success=False, msg=str(db_result))
     return jsonify(db_result)
 
