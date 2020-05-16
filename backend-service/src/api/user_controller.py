@@ -17,7 +17,7 @@ def createUser():
 
     success, e = db_lite.insertUser((email, password, firstname, lastname, client_id))
     if not success:
-        return jsonify(success=False, msg=e)
+        return jsonify(success=False, msg=str(e))
 
     new_user = {}
     new_user["user_id"] = client_id
@@ -49,7 +49,7 @@ def login():
     success, db_result = db_lite.getUser(email)
     
     if not success:
-        return jsonify(success=False, msg=db_result)
+        return jsonify(success=False, msg=str(db_result))
 
     user = db_result[0]
     print(user)
