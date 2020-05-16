@@ -1,0 +1,58 @@
+
+p {
+    margin: 0px;
+}
+
+h2 {
+    font-size: 1.2em;
+    font-weight: bolder;
+}
+
+
+/* Hero */
+.hero {
+    height: 20vh;
+    padding-bottom: 2em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/hero.jpg");
+    /* Position and center the image to scale nicely on all screens */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    position: relative;
+}
+
+.hero_content {
+    transition: all 0.4s linear;
+}
+
+.hero h1, .hero p {
+    text-align: center;
+    color: white;
+}
+
+.hero h1 {
+    font-size: 1em;
+    font-weight: 600;
+}
+
+.top_bar {
+    display: flex;
+    align-items: center;
+    height: 40px;
+    width: 100%;
+    position: fixed;
+    padding: 4px;
+    top: 0px;
+    opacity: 0;
+    color: white;
+    background-color: #463657;
+}
+
+.top_bar p {
+    font-size: 0.8em;
+    font-weight: 400;
+}
