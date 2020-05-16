@@ -23,11 +23,12 @@
   display: inline-block;
 }
 .skillTreeModal__level__icon {
-  font-size: 1.5em;
+  font-size: 1.1em;
+  padding-left: 10px;
 }
 
 .skillTreeModal__level__minLevel {
-  font-size: 0.8em;
+  font-size: 1.3em;
   font-weight: 700;
   padding-bottom: 3px;
   display: inline-block;
@@ -38,24 +39,7 @@
 }
 
 .skillTreeModal__button {
-  position: absolute;
-  display: inline-block;
-  right: 0%;
-  margin: 10px 30px 10px 10px;
-  font-size: 1em;
-  background: none;
+  margin-top: 30px;
+  float: right;
   border-radius: 5px;
-  padding: 5px;
-  box-shadow: none;
-  outline: none;
-  background: #84ff80;
-}
-
-.skillTreeModal__button:hover {
-  cursor: pointer;
-}
-
-.skillTreeModal__button:active,
-.skillTreeModal__button:focus {
-  outline: none;
 }

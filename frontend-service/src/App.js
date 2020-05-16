@@ -12,6 +12,7 @@ import Quests from "./pages/Quests";
 import Transfer from "./pages/Transfer";
 import History from "./pages/History";
 
+// Sample user level
 class App extends Component {
   state = {
     // Sets which page is to be rendered
@@ -50,16 +51,6 @@ class App extends Component {
       .catch(err => console.log(err));
   };
 
-  // componentDidMount() {
-  //   const requestOptions = {
-  //     method: "GET",
-  //     headers: { "Content-Type": "application/json" }
-  //   };
-  //   fetch("/user/123", requestOptions)
-  //     .then(e => e.json())
-  //     .then(b => console.log(b));
-  // }
-
   handleChangePage = page => {
     this.setState({ page });
   };
@@ -75,7 +66,13 @@ class App extends Component {
       case "home":
         return <LandingPage handleNav={this.handleChangePage} />;
       case "perks":
-        return <Perks handleNav={this.handleChangePage} />;
+        return (
+          <Perks
+            skillPoints={2}
+            userLevel={2}
+            handleNav={this.handleChangePage}
+          />
+        );
       case "quests":
         return <Quests handleNav={this.handleChangePage} />;
       case "transfer":

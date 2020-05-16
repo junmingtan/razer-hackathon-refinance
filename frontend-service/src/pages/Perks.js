@@ -4,7 +4,11 @@ import SkillTree from "../components/SkillTree";
 import SkillTreeNavBar from "../components/SkillTreeNavBar";
 import SkillTreeModal from "../components/SkillTreeModal";
 import "./Perks.css";
-import { GiRevolt } from "react-icons/gi";
+import {
+  GiLevelTwoAdvanced,
+  GiRevolt,
+  GiLevelFourAdvanced
+} from "react-icons/gi";
 import BottomNavBar from "../components/BottomNavBar";
 import Hero from "../components/Hero";
 
@@ -16,6 +20,19 @@ image has:
       description: "xx",
       is_active: true
  */
+function IconInfo({ Icon, value, description }) {
+  return (
+    <div className="perks__footer">
+      <div className="perks__icon">
+        <div>
+          <Icon />
+          <span className="perks__icon__num">{value}</span>
+        </div>
+        <div className="perks__icon__text">{description}</div>
+      </div>
+    </div>
+  );
+}
 
 class Perks extends Component {
   state = {
@@ -50,23 +67,32 @@ class Perks extends Component {
       <React.Fragment>
         <Hero
           heroContent={
-            <div className="perks__footer">
-              <div className="perks__icon">
-                <div style={{ marginBottom: "5px" }}>You have</div>
-                <GiRevolt />
-                <span className="perks__icon__num">2</span>
-                <div className="perks__icon__text">Skillpoints</div>
-              </div>
-            </div>
+            <React.Fragment>
+              <IconInfo
+                Icon={GiRevolt}
+                value={this.props.skillPoints}
+                description={"skillpoints"}
+              />
+              <IconInfo
+                Icon={GiLevelTwoAdvanced}
+                value={this.props.userLevel}
+                description={"level"}
+              />
+            </React.Fragment>
           }
           navbarContent={
-            <div className="perks__footer">
-              <div className="perks__icon">
-                <GiRevolt />
-                <span className="perks__icon__num">2</span>
-                <div className="perks__icon__text">Skillpoints</div>
-              </div>
-            </div>
+            <React.Fragment>
+              <IconInfo
+                Icon={GiRevolt}
+                value={this.props.skillPoints}
+                description={"skillpoints"}
+              />
+              <IconInfo
+                Icon={GiLevelTwoAdvanced}
+                value={this.props.userLevel}
+                description={"level"}
+              />
+            </React.Fragment>
           }
         />
 
@@ -75,6 +101,7 @@ class Perks extends Component {
             handleCloseModal={this.handleCloseModal}
             open={this.state.openModal}
             image={this.state.image}
+            userLevel={2}
           />
           <SkillTreeNavBar
             values={this.getCatergories(images)}

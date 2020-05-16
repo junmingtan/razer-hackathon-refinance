@@ -23,7 +23,7 @@ export const images = {
           description:
             "Enjoy a 0.5% rebate for every overseas travel related expenditure when you spend with razer pay!",
           is_active: true,
-          min_level: 3
+          min_level: 1
         },
         // bus
         {
@@ -32,27 +32,48 @@ export const images = {
           title: "Bus Away",
           description:
             "Enjoy 10% off golden coach when you pay with razer pay!",
-          is_active: false
+          is_active: false,
+          min_level: 1
         },
         // desert
         {
           active: "https://image.flaticon.com/icons/svg/734/734188.svg",
-          inactive: "https://image.flaticon.com/icons/png/512/734/734147.png"
+          inactive: "https://image.flaticon.com/icons/png/512/734/734147.png",
+          title: "Bus Away",
+          description:
+            "Enjoy 10% off golden coach when you pay with razer pay!",
+          is_active: false,
+          min_level: 1
         },
         // Photo
         {
           active: "https://image.flaticon.com/icons/svg/2353/2353369.svg",
-          inactive: "https://image.flaticon.com/icons/png/512/2353/2353370.png"
+          inactive: "https://image.flaticon.com/icons/png/512/2353/2353370.png",
+          title: "Bus Away",
+          description:
+            "Enjoy 10% off golden coach when you pay with razer pay!",
+          is_active: false,
+          min_level: 2
         },
         // sun
         {
           active: "https://image.flaticon.com/icons/png/512/2938/2938138.png",
-          inactive: "https://image.flaticon.com/icons/png/512/2938/2938098.png"
+          inactive: "https://image.flaticon.com/icons/png/512/2938/2938098.png",
+          title: "Bus Away",
+          description:
+            "Enjoy 10% off golden coach when you pay with razer pay!",
+          is_active: false,
+          min_level: 2
         },
         // globe
         {
           active: "https://image.flaticon.com/icons/svg/1924/1924027.svg",
-          inactive: "https://image.flaticon.com/icons/png/512/1923/1923998.png"
+          inactive: "https://image.flaticon.com/icons/png/512/1923/1923998.png",
+          title: "Bus Away",
+          description:
+            "Enjoy 10% off golden coach when you pay with razer pay!",
+          is_active: false,
+          min_level: 2
         }
       ]
     },
@@ -63,7 +84,12 @@ export const images = {
         // sail
         {
           active: "https://image.flaticon.com/icons/svg/1924/1924097.svg",
-          inactive: "https://image.flaticon.com/icons/png/512/1924/1924062.png"
+          inactive: "https://image.flaticon.com/icons/png/512/1924/1924062.png",
+          title: "Bus Away",
+          description:
+            "Enjoy 10% off golden coach when you pay with razer pay!",
+          is_active: false,
+          min_level: 4
         },
         // backpack
         {

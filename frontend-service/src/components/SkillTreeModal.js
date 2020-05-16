@@ -2,11 +2,17 @@ import React from "react";
 import Modal from "@material-ui/core/Modal";
 import Button from "@material-ui/core/Button";
 import ImageCard from "../components/ImageCard";
-import { GiLevelTwoAdvanced } from "react-icons/gi";
+import { GiLevelTwoAdvanced, GiFamilyHouse } from "react-icons/gi";
 
 import "./SkillTreeModal.css";
+import { textAlign } from "@material-ui/system";
 
-export default function SimpleModal({ handleCloseModal, open, image }) {
+export default function SimpleModal({
+  handleCloseModal,
+  open,
+  image,
+  userLevel
+}) {
   const body = (
     <div className="skillTreeModal">
       <div>
@@ -14,25 +20,34 @@ export default function SimpleModal({ handleCloseModal, open, image }) {
         <div className="skillTreeModal__level">
           <p>
             <span className="skillTreeModal__level__icon">
-              <GiLevelTwoAdvanced />
-            </span>
-            <span className="skillTreeModal__level__minLevel">
-              {image.min_level}
+              <div style={{ textAlign: "center", display: "inline-block" }}>
+                <div>
+                  <GiLevelTwoAdvanced />
+                  <span className="skillTreeModal__level__minLevel">
+                    {image.min_level}
+                  </span>
+                </div>
+                <div style={{ fontSize: "0.4em" }}>minimum level</div>
+              </div>
             </span>
           </p>
           <p></p>
         </div>
       </div>
-
       <h2>{image.title}</h2>
       <p className="skillTreeModal__description">{image.description}</p>
-      {/* <button
-        className="skillTreeModal__button"
-        variant="contained"
-        color="primary"
-      >
-        Upgrade
-      </button> */}
+      {!image.is_active ? (
+        <Button
+          className="skillTreeModal__button"
+          variant="contained"
+          color="primary"
+          disabled={userLevel < image.min_level ? true : false}
+        >
+          Upgrade
+        </Button>
+      ) : (
+        ""
+      )}
     </div>
   );
 
