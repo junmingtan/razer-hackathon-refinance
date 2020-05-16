@@ -6,7 +6,7 @@ from api.user_controller import user_api
 
 application.register_blueprint(user_api)
 
-@api.route('/health', methods=['GET'])
+@application.route('/health', methods=['GET'])
 def health():
     """
     Health check endpoint.
@@ -19,3 +19,4 @@ if __name__ == "__main__":
     # Setting debug to True enables debug output. This line should be
     # removed before deploying a production app.
     application.run(host="0.0.0.0", threaded=True, debug=True)
+oytho
