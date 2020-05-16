@@ -6,6 +6,7 @@ import Profile from '../components/Profile';
 import "./LandingPage.css";
 import ProgressBar from "../components/ProgressBar";
 import Hero from "../components/Hero";
+import QuestCard from "../components/QuestCard.jsx";
 
 const Section = ({section, children}) => (
     <div className="section">
@@ -55,21 +56,13 @@ const LandingPage = ({handleNav, quests=defaultQuests, user: {name, balance}=def
                 <Profile />
             </Section>
             <Section section="Quests">
-                {quests.map(({name, criteria, progress, exp}) => (
-                    <div className="quest card" key={name}>
-                        <div className="header">
-                            <p>{name}</p>
-                            <p>{exp} EXP</p>
-                        </div>
-                        <p className="fulfilled">Completed: {progress} of {criteria}</p>
-                        <ProgressBar frontColor="#7BC415FF" backColor="#AEFF0088" progress={progress / criteria * 100} />
-                    </div>
-                ))}
+                {quests.map(q => <QuestCard quest={q} key={q.name}/>)}
             </Section>
         </div>
         <BottomNavBar active={"home"} handleNav={handleNav}/>
       </div>
     );
 }
+
 
 export default LandingPage;

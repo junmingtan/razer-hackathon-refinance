@@ -36,6 +36,7 @@ class Home extends Component {
                 <CreateAccountCard
                   handleChangePage={this.props.handleChangePage}
                   handleChangeCard={this.handleChangeCard}
+                  handleCreateUser={this.props.handleCreateUser}
                 />
               )}
             </Grid>

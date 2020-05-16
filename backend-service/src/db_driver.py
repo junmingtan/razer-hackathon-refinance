@@ -1,6 +1,6 @@
 from application import db
 
-class db_driver:
+class Db_driver:
     def __init__(self):
         self.db_conn = db
 
@@ -116,6 +116,7 @@ class db_driver:
                         insert_query = "insert into user_perk (uid, pid) values ('%s', %d)" % (uid, pid)
                         cur.execute(insert_query)
                         self.db_conn.connection.commit()
+        return None
 
 
     def get_quest(self):
@@ -160,4 +161,7 @@ class db_driver:
         data = (new_user["user_id"], new_user["first_name"], new_user["last_name"], new_user["user_level"], new_user["exp_earned"])
         cur.execute(insert_query, data)
         self.db_conn.commit()
+        return None
         
+
+db_driver = Db_driver()

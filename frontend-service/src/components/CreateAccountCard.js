@@ -36,9 +36,13 @@ class CreateAccountCard extends Component {
     this.setState({ password });
   };
 
-  handleSubmit = () => {
-    console.log(this.state);
+  handleSubmit = handleCreateUser => {
+    handleCreateUser({
+      firstName: this.state.firstName,
+      lastName: this.state.lastName
+    });
   };
+
   render() {
     return (
       <Paper className="createAccountCard" elevation={3}>
@@ -110,7 +114,7 @@ class CreateAccountCard extends Component {
             <Button
               variant="contained"
               color="primary"
-              onClick={this.handleSubmit}
+              onClick={() => this.handleSubmit(this.props.handleCreateUser)}
             >
               Submit
             </Button>

@@ -15,8 +15,50 @@ import History from "./pages/History";
 class App extends Component {
   state = {
     // Sets which page is to be rendered
-    page: "perks"
+    page: "",
+    user: ""
   };
+
+  handleGetUserById = client_id => {
+    const requestOptions = {
+      method: "GET",
+      headers: { "Content-Type": "application/json" }
+    };
+    fetch("/user/" + client_id, requestOptions)
+      .then(e => e.json())
+      .then(user => {
+        this.setState({ user });
+        if (this.state.user != "") {
+          this.setState({ page: "home" });
+        }
+      })
+      .catch(err => console.log(err));
+  };
+
+  handleCreateUser = ({ firstName, lastName }) => {
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        firstname: firstName,
+        lastname: lastName
+      })
+    };
+    fetch("/user/create", requestOptions)
+      .then(e => e.json())
+      .then(client_id => this.handleGetUserById(client_id))
+      .catch(err => console.log(err));
+  };
+
+  // componentDidMount() {
+  //   const requestOptions = {
+  //     method: "GET",
+  //     headers: { "Content-Type": "application/json" }
+  //   };
+  //   fetch("/user/123", requestOptions)
+  //     .then(e => e.json())
+  //     .then(b => console.log(b));
+  // }
 
   handleChangePage = page => {
     this.setState({ page });
@@ -24,7 +66,12 @@ class App extends Component {
   renderPage = page => {
     switch (page) {
       default:
-        return <Home handleChangePage={this.handleChangePage} />;
+        return (
+          <Home
+            handleCreateUser={this.handleCreateUser}
+            handleChangePage={this.handleChangePage}
+          />
+        );
       case "home":
         return <LandingPage handleNav={this.handleChangePage} />;
       case "perks":

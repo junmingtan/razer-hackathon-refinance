@@ -4,7 +4,7 @@ from db_driver import db_driver
 skilltree_api = Blueprint('skilltree_api', __name__)
 
 @skilltree_api.route('/skilltree/<string:account_id>', methods=['GET'])
-def getAccount(account_id):
+def getSkillTree(account_id):
 
     result = None
 
@@ -25,5 +25,6 @@ def getAccount(account_id):
     ###
     # Call database client here
     ###
+    db_driver.update_skill_tree(uid=user_id, new_tree=skilltree)
 
     return jsonify(result)
