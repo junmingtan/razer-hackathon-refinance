@@ -66,6 +66,7 @@ class Perks extends Component {
     return (
       <React.Fragment>
         <Hero
+            backgroundImage={"/hero_perks.jpg"}
           heroContent={
             <React.Fragment>
               <IconInfo

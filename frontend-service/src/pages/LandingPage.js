@@ -19,7 +19,8 @@ const defaultUser = {
     level: 6,
     exp_earned:500,
     exp_required: 2000,
-    skills: []
+    skills: [],
+    quests: []
 }
 
 
@@ -61,7 +62,7 @@ const LandingPage = ({handleNav, quests=defaultQuests, user=defaultUser, handleC
                 <Profile user={user}/>
             </Section>
             <Section section="Quests">
-                {quests.filter(q => q.progress > 0 && !q.completed).map(q => <QuestCard quest={q} key={q.name} handleClick={() => handleClick(q)}/>)}
+                {user.quests.filter(q => q.progress > 0 && !q.completed).map(q => <QuestCard quest={q} key={q.name} handleClick={() => handleClick(q)}/>)}
             </Section>
         </div>
           <QuestModal open={modalOpen} quest={openQuest} handleClose={() => setModalOpen(false)} onCollect={() => {handleCollectQuest(openQuest); setModalOpen(false)}}/>

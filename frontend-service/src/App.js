@@ -13,7 +13,71 @@ import Transfer from "./pages/Transfer";
 import History from "./pages/History";
 
 
-const defaultQuests = [
+const serverQuests = [
+  {
+    name: "Create account",
+    progress: 1,
+    clear_condition: 1,
+    exp: 500,
+    description: "Hooray, you joined us! It's such a momentous event that it's even helped you clear your first quest! " +
+        "If you level up, you can use your skill point to pick a perk in the perks page.",
+    "qid": 0
+  },
+  {
+    "clear_condition": 6,
+    "description": null,
+    "exp": 500,
+    "name": "Direct credit your salary",
+    "qid": 1
+  },
+  {
+    "clear_condition": 2200,
+    "description": null,
+    "exp": 1000,
+    "name": "Save into fixed deposits",
+    "qid": 2
+  },
+  {
+    "clear_condition": 100,
+    "description": null,
+    "exp": 100,
+    "name": "Spend on dining",
+    "qid": 3
+  },
+  {
+    "clear_condition": 100,
+    "description": null,
+    "exp": 100,
+    "name": "Spend on dining",
+    "qid": 4
+  },
+  {
+    "clear_condition": 150,
+    "description": null,
+    "exp": 200,
+    "name": "Spend on retail",
+    "qid": 5
+  },
+  {
+    "clear_condition": 500,
+    "description": null,
+    "exp": 1000,
+    "name": "Spend on travel",
+    "qid": 6
+  },
+  {
+    "clear_condition": 800,
+    "description": "Reach $10,000 as savings in your account at any one time to clear this quest",
+    "exp": 10000,
+    "name": "Have $10,000 in your account",
+    "qid": 7
+  }
+]
+
+const defaultQuests =
+
+
+    [
   {
     name: "Create account",
     progress: 1,
@@ -66,16 +130,10 @@ class App extends Component {
           .then(a => a[0]);
       const quests = fetch("/quest/" + mambuid)
           .then(r => r.json())
-          .then(q => this.setState({quests: q}))
-          .catch(e => {
-            console.log(e)
-            this.setState({quests: defaultQuests})
-          })
-    return Promise.all([mambuuser, account])
-        .then(([mambuuser, account]) => {
+    return Promise.all([mambuuser, account, quests])
+        .then(([mambuuser, account, quests]) => {
             const {firstName, lastName} = mambuuser;
             const {balance} = account;
-            console.log(quests)
 
           const user = {
             level: 0,
@@ -83,11 +141,36 @@ class App extends Component {
             exp_earned: 0,
             exp_required: 500,
             skills: [],
-              balance, firstName, lastName
+            quests: serverQuests.map(q => {
+              const uqs = quests.filter(uq => uq.qid === q)
+              if (uqs.length === 1) {
+                return Object.assign(q, uqs[0])
+              } else {
+                return q
+              }
+            }),
+            balance, firstName, lastName
           }
-          this.setState({user})
+          this.setState({user, quests: serverQuests})
         })
         .catch(e => console.log(e))
+  }
+
+  componentWillMount() {
+    fetch("/quest", {"mode": "no-cors"})
+        .then(r => r.text()).then(r => console.log(r))
+    fetch("/quest")
+        .then(r => r.json())
+        .then(q => {
+          const want = q.reduce((a, c) => {
+            a[c.qid] = c;
+            return a;
+          }, {});
+          this.setState({
+            questList: want
+          });
+        })
+        .catch(e => console.log(e));
   }
 
   handleCollectQuest = (quest) => {
@@ -170,6 +253,7 @@ class App extends Component {
         return <Quests
             handleNav={this.handleChangePage}
             handleCollectQuest={this.handleCollectQuest}
+            quests={this.state.user.quests}
         />;
       case "transfer":
         return <Transfer handleNav={this.handleChangePage} />;

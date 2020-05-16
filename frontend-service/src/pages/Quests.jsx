@@ -39,7 +39,7 @@ const defaultQuests = [
     },
 ];
 
-const Quests = ({quests=defaultQuests, handleNav}) => {
+const Quests = ({quests=defaultQuests, handleNav, handleCollectQuest=() => ""}) => {
     const qs = {
         completed: {
             name: "Completed",
@@ -66,13 +66,13 @@ const Quests = ({quests=defaultQuests, handleNav}) => {
         if (q.completed) {
             qs.collected.quests.push(q)
         } else {
-            if ( q.progress === q.criteria) {
+            if ( q.progress === q.clear_condition) {
                 qs.completed.quests.push(q)
             }
-            if ( q.progress > 0 && q.progress !== q.criteria) {
+            else if ( q.progress > 0 && q.progress !== q.clear_condition) {
                 qs.inProgress.quests.push(q)
             }
-            if ( q.progress === 0) {
+            else {
                 qs.newQuests.quests.push(q)
             }
         }
@@ -127,7 +127,7 @@ const Quests = ({quests=defaultQuests, handleNav}) => {
                 </Section>
             ))}
         </div>
-        <QuestModal open={modalOpen} quest={openQuest} handleClose={() => setModalOpen(false)} />
+        <QuestModal open={modalOpen} quest={openQuest} handleClose={() => setModalOpen(false)} onCollect={() => {handleCollectQuest(openQuest); setModalOpen(false)}}/>
         <BottomNavBar active={"quests"} handleNav={handleNav} />
     </div>
 )}
