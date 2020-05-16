@@ -34,15 +34,15 @@ export const images = {
           active: "https://image.flaticon.com/icons/svg/2353/2353369.svg",
           inactive: "https://image.flaticon.com/icons/png/512/2353/2353370.png"
         },
-        // lighthouse
+        // sun
         {
-          active: "https://image.flaticon.com/icons/svg/877/877413.svg",
-          inacive: "https://image.flaticon.com/icons/png/512/877/877454.png"
+          active: "https://image.flaticon.com/icons/png/512/2938/2938138.png",
+          inactive: "https://image.flaticon.com/icons/png/512/2938/2938098.png"
         },
         // globe
         {
           active: "https://image.flaticon.com/icons/svg/1924/1924027.svg",
-          inacive: "https://image.flaticon.com/icons/png/512/1923/1923998.png"
+          inactive: "https://image.flaticon.com/icons/png/512/1923/1923998.png"
         }
       ]
     },
@@ -53,7 +53,7 @@ export const images = {
         // sail
         {
           active: "https://image.flaticon.com/icons/svg/1924/1924097.svg",
-          inacive: "https://image.flaticon.com/icons/png/512/1924/1924062.png"
+          inactive: "https://image.flaticon.com/icons/png/512/1924/1924062.png"
         },
         // backpack
         {
@@ -64,26 +64,21 @@ export const images = {
         {
           active: " https://image.flaticon.com/icons/svg/2794/2794128.svg",
           inactive: "https://image.flaticon.com/icons/png/512/2794/2794139.png"
-        }
-      ]
-    },
-    {
-      category: "grandmaster",
-      elements: [
+        },
         // cruise
         {
           active: "https://image.flaticon.com/icons/svg/1857/1857314.svg",
-          inacive: "https://image.flaticon.com/icons/png/512/1857/1857392.png"
+          inactive: "https://image.flaticon.com/icons/png/512/1857/1857392.png"
         },
         // Passport
         {
           active: "https://image.flaticon.com/icons/svg/652/652456.svg",
-          inacive: "https://image.flaticon.com/icons/png/512/652/652497.png"
+          inactive: "https://image.flaticon.com/icons/png/512/652/652497.png"
         },
         // Submarine
         {
           active: "https://image.flaticon.com/icons/svg/1816/1816058.svg",
-          inacive: "https://image.flaticon.com/icons/png/512/1816/1816070.png"
+          inactive: "https://image.flaticon.com/icons/png/512/1816/1816070.png"
         }
       ]
     },
@@ -93,9 +88,11 @@ export const images = {
       elements: [
         {
           active: "https://image.flaticon.com/icons/svg/571/571949.svg",
-          inacive: "https://image.flaticon.com/icons/png/512/587/587609.png"
+          inactive: "https://image.flaticon.com/icons/png/512/587/587609.png"
         }
       ]
     }
-  ]
+  ],
+  retail: [],
+  food: []
 };

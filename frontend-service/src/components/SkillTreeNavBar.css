@@ -1,0 +1,23 @@
+.skillTreeNavBar {
+  width: 100%;
+  padding: 1em 0;
+  margin-bottom: 0.8em;
+}
+
+.skillTreeNavBar__component {
+  width: 33%;
+  font-size: 0.7em;
+  display: inline-block;
+}
+
+.skillTreeNavBar__component__item {
+  padding: 0.4em 1.5em;
+  border-bottom-left-radius: 50px;
+  border-top-right-radius: 50px;
+}
+
+.skillTreeNavBar__component__item--active {
+  color: #1e941e;
+  background: #eeeeee;
+  transition: 0.3s;
+}

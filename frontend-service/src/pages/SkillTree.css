@@ -4,7 +4,7 @@
 
 .skillTree {
   display: inline-block;
-  width: 70%;
+  width: 100%;
   padding: 0 5%;
   /* border: 3px solid var(--line-colors); */
   border-radius: 5px;
