@@ -1,8 +1,24 @@
-from application import db
+from flask_mysqldb import MySQL
+from flask import Flask
+
+application = Flask(__name__)
+application.config['MYSQL_USER'] = 'admin'
+application.config['MYSQL_PASSWORD'] = 'password'
+application.config['MYSQL_HOST'] = 'razerdb.crzzgbmgexyn.ap-southeast-1.rds.amazonaws.com'
+application.config['MYSQL_DB'] = 'db'
+application.config['MYSQL_CURSORCLASS'] = 'DictCursor'
+application.config['MYSQL_PORT'] = 3306
+application.config['MYSQL_UNIX_SOCKET'] = None
+application.config['MYSQL_CONNECT_TIMEOUT'] = 10
+application.config['MYSQL_READ_DEFAULT_FILE'] = None
+application.config['MYSQL_USE_UNICODE'] = True
+application.config['MYSQL_CHARSET'] = 'utf8'
+application.config['MYSQL_SQL_MODE'] = None
 
 class Db_driver:
     def __init__(self):
-        self.db_conn = db
+        self.db_conn =  MySQL(application)
+
 
     def get_skill_tree(self, uid):
         '''
