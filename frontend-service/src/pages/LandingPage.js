@@ -63,7 +63,7 @@ const LandingPage = ({handleNav, quests=defaultQuests, user: {name, balance}=def
                   <p>${balance}</p>
               </div>
           </div>
-        <div className="content" style={{height: "200vh"}}>
+        <div className="content">
             <Section section="Profile">
                 <Profile />
             </Section>

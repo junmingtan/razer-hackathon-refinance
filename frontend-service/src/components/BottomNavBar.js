@@ -19,9 +19,9 @@ const BottomNavBar = ({active, handleNav}) => (
         <IoIosCash className={`navicon ${active === "transfer" ? "active":""}`}/>
         <span className="nav_text">transfer</span>
       </div>
-      <div className="nav_item" onClick={() => handleNav("quest")}>
-        <IoIosBonfire className={`navicon ${active === "quest" ? "active":""}`}/>
-        <span className="nav_text">quest</span>
+      <div className="nav_item" onClick={() => handleNav("quests")}>
+        <IoIosBonfire className={`navicon ${active === "quests" ? "active":""}`}/>
+        <span className="nav_text">quests</span>
       </div>
       <div className="nav_item" onClick={() => handleNav("history")}>
         <IoIosBook className={`navicon ${active === "history" ? "active":""}`}/>
