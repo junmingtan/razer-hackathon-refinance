@@ -24,14 +24,6 @@ class SkillTree extends Component {
           </div>
         );
       });
-      console.log();
-      // image.elements.map(
-      // component.push(
-      //   <div key={index} className="skillTree__item">
-      //     <ImageCard active src={image} />
-      //   </div>
-      // )
-      // );
     });
     return component;
   };
