@@ -3,8 +3,10 @@ from flask import Flask, jsonify
 application = Flask(__name__)
 
 from api.user_controller import user_api
+from api.account_controller import account_api
 
 application.register_blueprint(user_api)
+application.register_blueprint(account_api)
 
 @application.route('/health', methods=['GET'])
 def health():
