@@ -155,6 +155,8 @@ class Db_driver:
 
     def update_user_quest(self, new_user_quest):
         cur = self.db_conn.connection.cursor()
+        delete_query = "delete from user_quest where uid = '%s' and qid = %d" % (new_user_quest["uid"], new_user_quest["qid"])
+        cur.execute(delete_query)
         quest_query = "select * from quest where qid = %d" % (new_user_quest["qid"])
         cur.execute(quest_query)
         quest = list(cur.fetchall())[0]
