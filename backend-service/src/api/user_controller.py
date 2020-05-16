@@ -1,9 +1,10 @@
 from flask import Blueprint, request, jsonify
 from mambu_client import mambu_client
-from db_driver import db_driver
 from db_lite import db_lite
 
 user_api = Blueprint('user_api', __name__)
+
+from db_driver import db_driver
 
 @user_api.route('/user/create', methods=['POST'])
 def createUser():
