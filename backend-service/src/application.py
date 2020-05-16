@@ -5,7 +5,7 @@ application = Flask(__name__)
 from api.user_controller import user_api
 from api.account_controller import account_api
 from api.fwd_controller import fwd_api
-from db_driver.db_driver import db_setup
+from db_setup import db_setup
 
 db = db_setup(application) # Returns connection object if successful, else None
 

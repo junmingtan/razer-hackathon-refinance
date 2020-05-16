@@ -11,6 +11,7 @@ def getAccount(account_id):
     ###
     # Call database client here
     ###
+    result = db_driver.get_skill_tree(uid=account_id)
 
     return jsonify(result)
 
