@@ -1,17 +1,31 @@
-.bottomNavBar {
+.nav {
   position: fixed;
   bottom: 0px;
   width: 100%;
   height: 4em;
   display: flex;
   justify-content: space-between;
+  box-shadow: 0px -2px rgba(0,0,0,0.1);
 }
 
-.bottomNavBar__item {
-  margin: 2em;
-  background: #dddddd;
+.nav_item {
+  color: rgba(0,0,0,0.5);
+  padding: 0.5em;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
 }
 
-.bottomNavBar__item__text {
-  width: 100%;
+.nav_item .active {
+  color: #379683;
+}
+
+.nav_text {
+  font-size: 0.6em;
+  text-align: center;
+}
+
+.navicon {
+  height: 3em;
+  width: 3em;
 }
