@@ -18,6 +18,7 @@ class LoginCard extends Component {
 
   handleSubmit = () => {
     // if authenticated
+
     this.props.handleChangePage("landing page");
     // else
     // display error
