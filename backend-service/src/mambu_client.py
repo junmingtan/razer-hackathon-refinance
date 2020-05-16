@@ -44,13 +44,12 @@ class MambuClient:
                     ]
                 }
         r = requests.post(url, json=payload, auth=(self.team_name, self.password))
-        print(r.json())
         return(r.json())
 
     def getCurrentAccount(self, account_id):
         url = self.endpoint + 'savings/' + str(account_id)
         r = requests.get(url, auth=(self.team_name, self.password))
-        print(r.json())
+        return r.json()
 
     def createCurrentAccount(self, clientid):
         url = self.endpoint + 'savings'
@@ -74,10 +73,7 @@ class MambuClient:
                     }
                 }
         r = requests.post(url, json=payload, auth=(self.team_name, self.password))
-        print(r.json())
-        return(r.json())
-
+        return r.json()
 
 
 mambu_client = MambuClient()
-mambu_client.getClient('8a8e87b772175ada01721bfb9a42249b')
