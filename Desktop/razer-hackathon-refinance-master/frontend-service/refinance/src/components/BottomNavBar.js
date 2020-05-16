@@ -13,11 +13,13 @@ class BottomNavBar extends Component {
         direction="row"
         className="bottomNavBar"
       >
-        <Grid item>home</Grid>
-        <Grid item>perks</Grid>
-        <Grid item>transfer</Grid>
-        <Grid item>quest</Grid>
-        <Grid item>history</Grid>
+        <Grid className="bottomNavBar__item">
+          <span>home</span>
+        </Grid>
+        <Grid className="bottomNavBar__item">perks</Grid>
+        <Grid className="bottomNavBar__item">transfer</Grid>
+        <Grid className="bottomNavBar__item">quest</Grid>
+        <Grid className="bottomNavBar__item">history</Grid>
       </Grid>
     );
   }

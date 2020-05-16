@@ -9,6 +9,7 @@
   border: 3px solid var(--inactive-color);
   padding: 4px;
   border-radius: 10%;
+  transition: all 0.5s ease-out;
 }
 
 .imageCard:hover {

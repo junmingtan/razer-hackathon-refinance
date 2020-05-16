@@ -12,7 +12,7 @@ import LandingPage from "./pages/LandingPage";
 class App extends Component {
   state = {
     // Sets which page is to be rendered
-    page: "landing page"
+    page: ""
   };
 
   handleChangePage = page => {
