@@ -6,6 +6,13 @@ import Section from "../components/Section";
 
 const defaultQuests = [
     {
+        name: "Create account",
+        progress: 1,
+        criteria: 1,
+        exp: 500,
+        description: "Hooray, you joined us! It's such a momentous event that it's even helped you clear your first quest!"
+    },
+    {
         name: "Direct credit your salary",
         progress: 2,
         criteria: 6,
@@ -30,37 +37,71 @@ const defaultQuests = [
 ];
 
 const Quests = ({quests=defaultQuests, handleNav}) => {
-    const inProgress = quests.filter(q => q.progress > 0);
-    const newQuests = quests.filter(q => q.progress == 0);
+    const qs = {
+        completed: [],
+        inProgress: [],
+        newQuests: [],
+        collected: []
+    }
+    quests.forEach((q) => {
+        if (q.completed) {
+            qs.collected.push(q)
+        } else {
+            if ( q.progress === q.criteria) {
+                qs.completed.push(q)
+            }
+            if ( q.progress > 0 && q.progress !== q.criteria) {
+                qs.inProgress.push(q)
+            }
+            if ( q.progress === 0) {
+                qs.newQuests.push(q)
+            }
+        }
+    })
     const [openQuest, setOpenQuest] = useState({})
+    const [modalOpen, setModalOpen] = useState(false);
+    const handleClick = (q) => {
+        setOpenQuest(q);
+        setModalOpen(true);
+    }
     return (
     <div className="page">
         <Hero
             backgroundImage={"/hero_quest.jpg"}
             heroContent={
                 <div>
-                    <h1>{`You have ${inProgress.length} in progress, ${newQuests.length} new quests`}</h1>
+                    <h1>{`You have ${qs.inProgress.length} in progress, ${qs.newQuests.length} new quests`}</h1>
                 </div>
             }
             navbarContent={
                 <div>
-                    <p>{`${inProgress.length} in progress, ${newQuests.length} new`}</p>
+                    <p>{`${qs.inProgress.length} in progress, ${qs.newQuests.length} new`}</p>
                 </div>
             }
         />
         <div className="content">
-            {inProgress.length > 0 ?
-                <Section section="In Progress" >
-                    {inProgress.map(q => <QuestCard quest={q} handleClick={() => setOpenQuest(q)}/>)}
+            {qs.completed.length > 0 ?
+                <Section section="Completed" >
+                    {qs.completed.map(q => <QuestCard quest={q} handleClick={() => handleClick(q)}/>)}
                 </Section> : ""
             }
-            {newQuests.length > 0 ?
+            {qs.inProgress.length > 0 ?
+                <Section section="In Progress" >
+                    {qs.inProgress.map(q => <QuestCard quest={q} handleClick={() => handleClick(q)}/>)}
+                </Section> : ""
+            }
+            {qs.newQuests.length > 0 ?
                 <Section section="New" >
-                    {newQuests.map(q => <QuestCard quest={q} handleClick={() => setOpenQuest(q)}/>)}
+                    {qs.newQuests.map(q => <QuestCard quest={q} handleClick={() => handleClick(q)}/>)}
+                </Section> : ""
+            }
+            {qs.collected.length > 0 ?
+                <Section section="History" >
+                    {qs.collected.map(q => <QuestCard quest={q} handleClick={() => handleClick(q)}/>)}
                 </Section> : ""
             }
         </div>
-        <QuestModal open={!!!!Object.keys(openQuest).length} quest={openQuest} handleClose={() => setOpenQuest({})} />
+        <QuestModal open={modalOpen} quest={openQuest} handleClose={() => setModalOpen(false)} />
         <BottomNavBar active={"quests"} handleNav={handleNav} />
     </div>
 )}

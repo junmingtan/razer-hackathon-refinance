@@ -18,7 +18,10 @@ const QuestCard = ({quest:{name, exp, progress, criteria}, handleClick}) => {
     </div>
 )}
 
-export const QuestModal = ({open, handleClose, quest: {name, exp, progress, criteria, description}}) => (
+export const QuestModal = ({open, handleClose, quest, onCollect}) => {
+    const {name, exp, progress, criteria, description, completed} = quest
+    const available = !completed && progress === criteria;
+    return (
     <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
@@ -34,13 +37,14 @@ export const QuestModal = ({open, handleClose, quest: {name, exp, progress, crit
             <div className="modal">
                 <div className="modal_title">
                     <h2>{name}</h2>
-                    <h2>{exp} EXP</h2>
                 </div>
+                <div>{description}</div>
+                <p>Completed: {progress} of {criteria}</p>
                 <ProgressBar frontColor={progress > 0 ? "#7BC415FF" : "#2c6ec4FF"} backColor={progress > 0 ? "#AEFF0088" : "#A2EEFF88"} progress={progress / criteria * 100} />
-                <p>{description}</p>
+                <div className={`button ${available ? "available" : ""}`} onClick={() => available ? onCollect(quest) : ""}>{exp} EXP</div>
             </div>
         </Fade>
     </Modal>
-)
+)}
 
 export default QuestCard
