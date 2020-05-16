@@ -2,9 +2,46 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
+    padding: 1em 1em;
 }
+
+.container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 1em 1em;
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    box-shadow: 2px 2px 4px 0px rgba(176, 176, 176, 0.31);
+    margin-bottom: 0.5em;
+}
+
+p {
+    margin: 0px;
+}
+
+.container > div {
+    margin-bottom: 0.5em;
+}
+
+.quest.container > .header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.quest.container > .fulfilled {
+    font-size: 0.8em;
+    margin: 0px 0px 0.5em 0px;
+    color: #000000AA;
+}
+
 
 .hero {
     display: flex;
     justify-content: center;
+}
+
+h2 {
+    font-weight: bolder;
 }
