@@ -13,7 +13,7 @@ import BottomNavBar from "../components/BottomNavBar";
 import Hero from "../components/Hero";
 
 /*
-image has: 
+image has:
       active: "https://image.flaticon.com/icons/svg/2695/2695674.svg",
       inactive: "https://image.flaticon.com/icons/png/512/2695/2695678.png",
       title: "ss",
@@ -113,7 +113,6 @@ class Perks extends Component {
             handleOpenModal={this.handleOpenModal}
           />
         </div>
-        <div style={{ padding: "100px" }}></div>
         <BottomNavBar active="perks" handleNav={this.props.handleNav} />
       </React.Fragment>
     );

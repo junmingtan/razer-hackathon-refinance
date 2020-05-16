@@ -26,59 +26,52 @@ class LoginCard extends Component {
 
   render() {
     return (
-      <Paper
-        className="createAccountCard createAccountCard--login"
-        elevation={3}
-      >
-        <Grid
-          container
-          direction="column"
-          justify="center"
-          alignItems="center"
-          spacing={2}
+      <div className="createAccountCard__container">
+        <div
+          className="createAccountCard createAccountCard--login"
+          elevation={3}
         >
           <Grid item className="createAccountCard__header">
             Login
           </Grid>
 
-          <Grid item xs={12} className="createAccountCard__textField">
-            <TextField
-              label="Email"
-              variant="outlined"
-              className="createAccountCard__textField"
-              onChange={this.handleEmailChange}
-              value={this.state.email}
-            />
-          </Grid>
-          <Grid item xs={12} className="createAccountCard__textField">
-            <TextField
-              label="Password"
-              variant="outlined"
-              className="createAccountCard__textField"
-              onChange={this.handlePasswordChange}
-              value={this.state.password}
-            />
-          </Grid>
+          <TextField
+            label="Email"
+            variant="outlined"
+            className="createAccountCard__textField createAccountCard__component"
+            onChange={this.handleEmailChange}
+            value={this.state.email}
+            size="small"
+          />
 
-          <Grid item>
+          <TextField
+            label="Password"
+            variant="outlined"
+            className="createAccountCard__textField createAccountCard__component"
+            onChange={this.handlePasswordChange}
+            value={this.state.password}
+            size="small"
+          />
+
+          <div className="createAccountCard__component">
             <Button
               variant="contained"
               color="primary"
-              onClick={this.handleSubmit}
+              onClick={() => this.props.handleLogin(this.state)}
             >
               Submit
             </Button>
-          </Grid>
-          <Grid item>
+          </div>
+          <div className="createAccountCard__component">
             <div
               onClick={() => this.props.handleChangeCard()}
               className="createAccountCard__footer"
             >
               <p>Create an account</p>
             </div>
-          </Grid>
-        </Grid>
-      </Paper>
+          </div>
+        </div>
+      </div>
     );
   }
 }

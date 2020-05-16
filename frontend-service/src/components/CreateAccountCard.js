@@ -37,100 +37,91 @@ class CreateAccountCard extends Component {
   };
 
   handleSubmit = handleCreateUser => {
-    handleCreateUser({
-      firstName: this.state.firstName,
-      lastName: this.state.lastName
-    });
+    handleCreateUser(this.state);
   };
 
   render() {
     return (
-      <Paper className="createAccountCard" elevation={3}>
-        <Grid
-          container
-          direction="column"
-          justify="center"
-          alignItems="center"
-          spacing={2}
-        >
+      <div className="createAccountCard__container">
+        <div className="createAccountCard" elevation={3}>
           <Grid item className="createAccountCard__header">
             Create a new account
           </Grid>
-
-          <Grid item xs={12} className="createAccountCard__textField">
+          <div className="createAccountCard__fnln createAccountCard__fnln--marginRight ">
             <TextField
               label="First Name"
               variant="outlined"
-              className="createAccountCard__textField"
               onChange={this.handleFirstNameChange}
+              className="createAccountCard__textField createAccountCard__component"
               value={this.state.firstName}
+              size="small"
             />
-          </Grid>
-
-          <Grid item xs={12} className="createAccountCard__textField">
+          </div>
+          <div className="createAccountCard__fnln createAccountCard__fnln--marginLeft">
             <TextField
               label="Last Name"
               variant="outlined"
-              className="createAccountCard__textField"
+              className="createAccountCard__textField createAccountCard__component"
               onChange={this.handleLastNameChange}
               value={this.state.lastName}
+              size="small"
             />
-          </Grid>
+          </div>
 
-          <Grid item xs={12} className="createAccountCard__textField">
-            <TextField
-              label="Address"
-              variant="outlined"
-              className="createAccountCard__textField"
-              onChange={this.handleAddressChange}
-              value={this.state.address}
-            />
-          </Grid>
-          <Grid item xs={12} className="createAccountCard__textField">
-            <TextField
-              label="Email"
-              variant="outlined"
-              className="createAccountCard__textField"
-              onChange={this.handleEmailChange}
-              value={this.state.email}
-            />
-          </Grid>
-          <Grid item xs={12} className="createAccountCard__textField">
-            <TextField
-              label="Password"
-              variant="outlined"
-              className="createAccountCard__textField"
-              onChange={this.handlePasswordChange}
-              value={this.state.password}
-            />
-          </Grid>
-          <Grid item>
+          <TextField
+            label="Address"
+            variant="outlined"
+            className="createAccountCard__textField createAccountCard__component"
+            onChange={this.handleAddressChange}
+            value={this.state.address}
+            size="small"
+          />
+
+          <TextField
+            label="Email"
+            variant="outlined"
+            className="createAccountCard__textField createAccountCard__component"
+            onChange={this.handleEmailChange}
+            value={this.state.email}
+            size="small"
+          />
+
+          <TextField
+            label="Password"
+            variant="outlined"
+            className="createAccountCard__textField createAccountCard__component"
+            onChange={this.handlePasswordChange}
+            value={this.state.password}
+            size="small"
+          />
+
+          <div className="createAccountCard__component">
             <Button variant="contained" color="secondary">
               Upload NRIC
               <input type="file" style={{ display: "none" }} />
             </Button>
-          </Grid>
-          <Grid item>
+          </div>
+
+          <div className="createAccountCard__component">
             <Button
               variant="contained"
               color="primary"
               onClick={() => this.handleSubmit(this.props.handleCreateUser)}
+              className="createAccountCard__component"
             >
               Submit
             </Button>
-          </Grid>
+          </div>
 
-          <Grid item>
-            <div
-              onClick={() => this.props.handleChangeCard()}
-              className="createAccountCard__footer"
-            >
-              <p>Have an account?</p>
-              <p>Log in</p>
-            </div>
-          </Grid>
-        </Grid>
-      </Paper>
+          <div
+            onClick={() => this.props.handleChangeCard()}
+            className="createAccountCard__footer"
+          >
+            <p>Have an account?</p>
+            <p>Log in</p>
+          </div>
+        </div>
+      </div>
     );
   }
 }

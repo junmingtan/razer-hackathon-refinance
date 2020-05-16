@@ -32,24 +32,10 @@
 
 
 .modal .button {
-    background-color: #bbbbbb;
     opacity: 0.8;
-    width: auto;
+    width: 100%;
     text-align: center;
     padding: 0.5em;
     border-radius: 4px;
     transition: opacity 0.5s linear;
-}
-
-.button:hover {
-    opacity: 1;
-}
-.button:active {
-    opacity: 1;
-}
-
-
-.modal .button.available {
-    background-color: #379683;
-    color: white;
 }

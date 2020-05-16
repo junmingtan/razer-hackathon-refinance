@@ -1,30 +1,53 @@
+.createAccountCard__container {
+  background-size: cover;
+  height: 100vh;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)), url(https://i.pinimg.com/originals/16/db/fa/16dbfabf01f0472865c29350b0f61e30.jpg) no-repeat fixed center;
+}
+
 .createAccountCard {
-  min-width: 270px;
-  max-width: 30%;
-  height: 650px;
-  margin: 30px 10px 10px 10px;
-  padding: 20px;
+  width: auto;
+  margin: 5em 3em;
+  padding: 0 20px;
+  display: inline-block;
+  padding-top: 40px;
+  background: white;
+  border-radius: 10px;
+}
+
+.createAccountCard__fnln {
+  width: 49%;
+  display: inline-block;
+}
+.createAccountCard__fnln--marginRight {
+  margin-right: 1%;
+}
+.createAccountCard__fnln--marginLeft {
+  margin-left: 1%;
 }
 
 .createAccountCard--login {
   height: 400px;
 }
 
+.createAccountCard__component {
+  margin: 6px 0;
+}
+
 .createAccountCard__header {
-  font-weight: 500;
-  font-size: 1.5em;
+  font-weight: bolder;
+  font-size: 1em;
   margin-bottom: 10%;
 }
 
 .createAccountCard__textField {
   width: 100%;
+  font-size: 0.2em;
 }
 
 .createAccountCard__footer {
-  position: relative;
   color: #575757;
-  top: 20px;
-  font-size: 0.85em;
+  margin: 20px 0;
+  font-size: 0.7em;
   text-align: center;
 }
 
