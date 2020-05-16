@@ -1,19 +1,30 @@
 from flask import Flask, jsonify
 
 application = Flask(__name__)
-
-from db_setup import db_setup
-
-db = db_setup(application) # Returns connection object if successful, else None
+application.config['MYSQL_USER'] = 'admin'
+application.config['MYSQL_PASSWORD'] = 'password'
+application.config['MYSQL_HOST'] = 'razerdb.crzzgbmgexyn.ap-southeast-1.rds.amazonaws.com'
+application.config['MYSQL_DB'] = 'db'
+application.config['MYSQL_CURSORCLASS'] = 'DictCursor'
+application.config['MYSQL_PORT'] = 3306
+application.config['MYSQL_UNIX_SOCKET'] = None
+application.config['MYSQL_CONNECT_TIMEOUT'] = 10
+application.config['MYSQL_READ_DEFAULT_FILE'] = None
+application.config['MYSQL_USE_UNICODE'] = True
+application.config['MYSQL_CHARSET'] = 'utf8'
+application.config['MYSQL_SQL_MODE'] = None
 
 from api.user_controller import user_api
 from api.account_controller import account_api
 from api.fwd_controller import fwd_api
-
+from api.skilltree_controller import skilltree_api
+from api.quest_controller import quest_api
 
 application.register_blueprint(user_api)
 application.register_blueprint(account_api)
 application.register_blueprint(fwd_api)
+application.register_blueprint(skilltree_api)
+application.register_blueprint(quest_api)
 
 @application.route('/health', methods=['GET'])
 def health():
