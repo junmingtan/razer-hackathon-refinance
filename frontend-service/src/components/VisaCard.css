@@ -1,0 +1,12 @@
+.visa_card {
+    width: 90vw;
+    height: 10em;
+    top: -5em;
+    border-radius: 1em;
+    background: antiquewhite;
+    box-shadow: 0em 0.5em 1em 0px rgba(0,0,0,0.1);
+}
+
+.visa_logo {
+    width: 20%;
+}
