@@ -23,15 +23,15 @@ def getQuest():
 
     return jsonify(result)
 
-@quest_api.route('/quest/', methods=['POST'])
-def getAccount(account_id):
-    user_id = request.json['user_id']
-    skilltree = request.json['quest']
+# @quest_api.route('/quest/', methods=['POST'])
+# def getAccount(account_id):
+#     user_id = request.json['user_id']
+#     skilltree = request.json['quest']
 
-    result = None
+#     result = None
 
-    ###
-    # Call database client here
-    ###
+#     ###
+#     # Call database client here
+#     ###
 
-    return jsonify(result)
+#     return jsonify(result)

@@ -97,25 +97,15 @@ class Db_driver:
         return full_skill_tree
 
 
-    def update_skill_tree(self, uid, new_tree):
+    def update_skill_tree(self, uid, pid):
         '''
         Updates the user_perk table by inserting new uid, pid entries
-        For ease of implementation, deletes any existing entry and reinserts
         Returns ??? #TODO: confirm return value
         '''
         cur = self.db_conn.connection.cursor()
-        for skill_types in new_tree.keys():
-            skill_type = new_tree[skill_types]
-            for category in skill_type.keys():
-                item_list = skill_type[category]
-                for item in item_list:
-                    if item["is_active"]:
-                        pid = item["pid"]
-                        delete_query = "delete from user_perk where uid = '%s' and pid = %d" % (uid, pid)
-                        cur.execute(delete_query)
-                        insert_query = "insert into user_perk (uid, pid) values ('%s', %d)" % (uid, pid)
-                        cur.execute(insert_query)
-                        self.db_conn.connection.commit()
+        insert_query = "insert into user_perk (uid, pid) values ('%s', %d)" % (uid, pid)
+        cur.execute(insert_query)
+        self.db_conn.connection.commit()
         return None
 
 
