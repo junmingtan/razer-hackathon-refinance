@@ -18,7 +18,7 @@ const QuestCard = ({quest:{name, exp, progress, criteria}, handleClick}) => {
     </div>
 )}
 
-export const QuestModal = ({open, handleClose, quest, onCollect}) => {
+export const QuestModal = ({open, handleClose, quest, onCollect=() => console.log("collected ", quest)}) => {
     const {name, exp, progress, criteria, description, completed} = quest
     const available = !completed && progress === criteria;
     return (
