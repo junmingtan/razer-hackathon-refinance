@@ -4,9 +4,8 @@ import VisaCard from "../components/VisaCard";
 import Profile from '../components/Profile';
 
 import "./LandingPage.css";
-import ProgressBar from "../components/ProgressBar";
 import Hero from "../components/Hero";
-import QuestCard from "../components/QuestCard.jsx";
+import QuestCard, {QuestModal} from "../components/QuestCard";
 import Section from "../components/Section";
 
 const defaultQuests = [
@@ -25,7 +24,6 @@ const defaultUser = {
 
 
 const LandingPage = ({handleNav, quests=defaultQuests, user=defaultUser}) => {
-
     const {name, balance} = user;
     useEffect(() => {
         fetch("/user/123")
@@ -33,6 +31,12 @@ const LandingPage = ({handleNav, quests=defaultQuests, user=defaultUser}) => {
             .then(b => console.log(b))
     })
 
+    const [openQuest, setOpenQuest] = useState({})
+    const [modalOpen, setModalOpen] = useState(false);
+    const handleClick = (q) => {
+        setOpenQuest(q);
+        setModalOpen(true);
+    }
     return (
       <div className="page">
           <Hero
@@ -52,13 +56,14 @@ const LandingPage = ({handleNav, quests=defaultQuests, user=defaultUser}) => {
             }
           />
         <div className="content">
-            <Section section="Profile">
+            <Section section="Profile" onClick={() => handleNav("perks")}>
                 <Profile user={user}/>
             </Section>
             <Section section="Quests">
-                {quests.map(q => <QuestCard quest={q} key={q.name}/>)}
+                {quests.map(q => <QuestCard quest={q} key={q.name} handleClick={() => handleClick(q)}/>)}
             </Section>
         </div>
+          <QuestModal open={modalOpen} quest={openQuest} handleClose={() => setModalOpen(false)} />
         <BottomNavBar active={"home"} handleNav={handleNav}/>
       </div>
     );

@@ -32,7 +32,12 @@ const Hero = ({
     const [fadeIn, setFadeIn] = useState(0);
     return (
         <React.Fragment>
-        <div className="hero" ref={ref} style={{backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("${backgroundImage}")`}}>
+        <div
+            className="hero"
+            ref={ref}
+            style={{
+                backgroundImage: `linear-gradient(rgba(0, 0, 0, ${0.4 + Math.max(0,(fadeOut / 100) * 0.2)}), rgba(0, 0, 0, ${0.8 + Math.max(0 , (fadeOut / 100) * 0.2)})), url("${backgroundImage}")`
+            }}>
             {/*<VisaCard />*/}
             <div className="hero-content" style={{marginTop: `${fadeOut}px`, opacity: `${Math.max(0, 1 - (fadeOut / 100))}`}}>
                 {heroContent}

@@ -86,7 +86,7 @@ const Quests = ({quests=defaultQuests, handleNav}) => {
     return (
     <div className="page">
         <Hero
-            backgroundImage={"/hero_quest.jpg"}
+            backgroundImage={"/hero_quest.png"}
             heroContent={
                 <div>
                     <h2 style={{marginBottom: "0px"}}>Quests</h2>
