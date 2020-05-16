@@ -55,3 +55,9 @@ def login():
     if (user[1] != password):
         return jsonify(success=False, msg='Wrong Password')
     return jsonify(email=email, firstname=user[2], lastname=user[3], mambuid=user[4])
+
+@user_api.route('/user/all', methods=['GET'])
+def allUsers():
+    success, db_result = db_lite.getAllUsers()
+    return jsonify(db_result)
+

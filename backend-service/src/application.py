@@ -37,6 +37,9 @@ def home():
                     <b> GET /user/&ltuser_id&gt </b> <br>
                     Get user by user_id
                     <br><br>
+                    <b> GET /user/all </b> <br>
+                    Gets all users stored in db_lite for debugging
+                    <br><br>
                     <b> POST /login </b> <br>
                     Request body: {email, password} <br>
                     Gets mambuid, firstname and lastname

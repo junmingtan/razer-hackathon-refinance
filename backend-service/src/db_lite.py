@@ -28,15 +28,21 @@ class DbLite:
             return (True, None)
         except Error as e:
             return (False, e)
-
-
-
     
     def getUser(self, email):
         conn = sqlite3.connect('./resources/dblite.db')
         c = conn.cursor()
         try:
             c.execute('SELECT * FROM users WHERE email = ?', (email,))
+            return (True, c.fetchall())
+        except Error as e:
+            return (False, e)
+    
+    def getAllUsers(self):
+        conn = sqlite3.connect('./resources/dblite.db')
+        c = conn.cursor()
+        try:
+            c.execute('SELECT * FROM users')
             return (True, c.fetchall())
         except Error as e:
             return (False, e)
