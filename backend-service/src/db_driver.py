@@ -86,7 +86,7 @@ class Db_driver:
 
 
         cur = self.db_conn.connection.cursor()
-        user_perk_query = "select pid from perk where uid = '%s'" % (uid)
+        user_perk_query = "select pid from user_perk where uid = '%s'" % (uid)
         cur.execute(user_perk_query)
         user_perk_result = list(cur.fetchall())
         user_perk_result = {item for item in user_perk_result} # creates a set of perk ids 
