@@ -103,7 +103,7 @@ class Db_driver:
         Returns ??? #TODO: confirm return value
         '''
         cur = self.db_conn.connection.cursor()
-        insert_query = "insert into user_perk (uid, pid) values ('%s', %d)" % (uid, pid)
+        insert_query = "insert into user_perk (uid, pid) values ('%s', %s)" % (uid, str(pid))
         cur.execute(insert_query)
         self.db_conn.connection.commit()
         return None
@@ -147,7 +147,7 @@ class Db_driver:
         cur = self.db_conn.connection.cursor()
         delete_query = '''delete from `user` where uid = "%s"''' % (uid)
         cur.execute(delete_query)
-        insert_query = '''insert into `user` (uid, first_name, last_name, user_level, exp_earned, skill_point) values (%s, %s, %s, %d, %d, %d)'''
+        insert_query = '''insert into `user` (uid, first_name, last_name, user_level, exp_earned, skill_point) values (%s, %s, %s, %s, %s, %s)'''
         data = (new_user["user_id"], new_user["first_name"], new_user["last_name"], new_user["user_level"], new_user["exp_earned"], new_user["skill_point"])
         cur.execute(insert_query, data)
         self.db_conn.commit()
@@ -155,13 +155,13 @@ class Db_driver:
 
     def update_user_quest(self, new_user_quest):
         cur = self.db_conn.connection.cursor()
-        delete_query = "delete from user_quest where uid = '%s' and qid = %d" % (new_user_quest["uid"], new_user_quest["qid"])
+        delete_query = "delete from user_quest where uid = '%s' and qid = %s" % (new_user_quest["uid"], str(new_user_quest["qid"]))
         cur.execute(delete_query)
-        quest_query = "select * from quest where qid = %d" % (new_user_quest["qid"])
+        quest_query = "select * from quest where qid = %s" % (str(new_user_quest["qid"]))
         cur.execute(quest_query)
         quest = list(cur.fetchall())[0]
         clear_condition = quest["clear_condition"]
-        insert_query = '''insert into user_quest (uid, qid, progress, clear_condition, completed) values (%s, %d, %d, %d, %d)'''
+        insert_query = '''insert into user_quest (uid, qid, progress, clear_condition, completed) values (%s, %d, %d, %s, %s)'''
         data = (new_user_quest["uid"], new_user_quest["qid"], new_user_quest["progress"], clear_condition, new_user_quest["completed"])
         cur.execute(insert_query, data)
         self.db_conn.commit()
