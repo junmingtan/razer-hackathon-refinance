@@ -7,7 +7,8 @@ export const images = {
         [
           {
             active: "https://image.flaticon.com/icons/png/512/652/652453.png",
-            inactive: "https://image.flaticon.com/icons/png/512/652/652494.png"
+            inactive: "https://image.flaticon.com/icons/png/512/652/652494.png",
+            is_active: true
           }
         ]
     },
@@ -17,12 +18,21 @@ export const images = {
         // suitcase
         {
           active: "https://image.flaticon.com/icons/svg/2695/2695674.svg",
-          inactive: "https://image.flaticon.com/icons/png/512/2695/2695678.png"
+          inactive: "https://image.flaticon.com/icons/png/512/2695/2695678.png",
+          title: "Travel Boost",
+          description:
+            "Enjoy a 0.5% rebate for every overseas travel related expenditure when you spend with razer pay!",
+          is_active: true,
+          min_level: 3
         },
         // bus
         {
           active: "https://image.flaticon.com/icons/svg/2636/2636346.svg",
-          inactive: "https://image.flaticon.com/icons/png/512/2636/2636354.png"
+          inactive: "https://image.flaticon.com/icons/png/512/2636/2636354.png",
+          title: "Bus Away",
+          description:
+            "Enjoy 10% off golden coach when you pay with razer pay!",
+          is_active: false
         },
         // desert
         {
