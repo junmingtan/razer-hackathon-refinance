@@ -12,33 +12,27 @@ class SkillTree extends Component {
 
   renderImages = images => {
     let component = [];
-    const lastElement = images.pop();
-    component.push(
-      <div className="skillTree__container">
-        <ImageCard active src={images.shift()} />
-      </div>
-    );
-    component.push(text("Novice"));
     images.map((image, index) => {
-      if (index == 6) {
-        component.push(text("Journey Man"));
-      } else if (index == 9) {
-        component.push(text("Grand Master"));
+      // Renders the header
+      if (image.category != "") {
+        component.push(text(image.category));
       }
-      component.push(
-        <div key={index} className="skillTree__item">
-          <ImageCard active src={image} />
-        </div>
-      );
+      image.elements.map((e, index2) => {
+        component.push(
+          <div key={index + "" + index2} className="skillTree__item">
+            <ImageCard active src={e} />
+          </div>
+        );
+      });
+      console.log();
+      // image.elements.map(
+      // component.push(
+      //   <div key={index} className="skillTree__item">
+      //     <ImageCard active src={image} />
+      //   </div>
+      // )
+      // );
     });
-
-    component.push(text("Legendary"));
-    component.push(
-      <div className="skillTree__container">
-        <ImageCard active src={lastElement} />
-      </div>
-    );
-
     return component;
   };
 

@@ -28,6 +28,6 @@
 .skillTree__categories {
   font-size: 0.8em;
   padding: 0.6em 0;
-  margin-bottom: 0.3em;
+  margin-bottom: 0.5em;
   border-bottom: 2px solid var(--line-colors);
 }

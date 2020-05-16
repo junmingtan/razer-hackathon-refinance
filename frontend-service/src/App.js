@@ -22,7 +22,7 @@ class App extends Component {
     switch (page) {
       default:
         return <Home handleChangePage={this.handleChangePage} />;
-      case "landing page":
+      case "home":
         return <LandingPage handleNav={this.handleChangePage} />;
       case "perks":
         return <Perks handleNav={this.handleChangePage} />;
