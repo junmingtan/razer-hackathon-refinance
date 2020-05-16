@@ -1,0 +1,42 @@
+.quests-status-container {
+    display: flex;
+    flex-direction: row;
+    width: auto;
+    padding: 0 2em;
+    justify-content: space-evenly;
+}
+
+.quests-status {
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.quests-status p {
+    font-size: 0.5em;
+    font-weight: 600;
+}
+
+.quests-quantity {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+
+.quests-quantity > p {
+    font-size: 1em;
+}
+
+.quests-navbar {
+    display: flex;
+}
+
+.quests-navbar > div {
+    display: flex;
+    margin-right: 0.5em;
+}

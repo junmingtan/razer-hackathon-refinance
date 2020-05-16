@@ -13,7 +13,7 @@ const ProgressBarInner = ({progress, fades}) => {
     <div className="progress" style={{backgroundColor: fades[6]}}>
         <div className="main" style={{backgroundColor: fades[0], flexGrow: `${progress / 100}`}}>
         </div>
-        <div style={{flexGrow: `${1 - (progress / 100)}`}}>
+        {progress !== 100 ? <div style={{flexGrow: `${1 - (progress / 100)}`}}>
             <div className="row" id="r-one">
                 <span className="sq" style={{backgroundColor: fades[3]}}/>
                 <span className="sq" style={{backgroundColor: fades[5]}}/>
@@ -34,7 +34,8 @@ const ProgressBarInner = ({progress, fades}) => {
                 <span className="sq" style={{backgroundColor: fades[1]}}></span>
                 <span className="sq" style={{backgroundColor: fades[2]}}></span>
             </div>
-        </div>
+        </div> : ""}
+
     </div>
 )}
 

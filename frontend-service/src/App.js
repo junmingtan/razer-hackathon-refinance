@@ -52,6 +52,7 @@ class App extends Component {
   };
 
   handleChangePage = page => {
+    window.scroll(0,0);
     this.setState({ page });
   };
   renderPage = page => {
