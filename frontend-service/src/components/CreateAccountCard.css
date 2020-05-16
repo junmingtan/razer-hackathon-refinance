@@ -1,11 +1,11 @@
 .createAccountCard__container {
-  background: url(https://cdn.mos.cms.futurecdn.net/odLUHcFdsFcUey9pCfvF7F-650-80.jpg);
+  background-size: cover;
+  height: 100vh;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.8)), url(https://i.pinimg.com/originals/16/db/fa/16dbfabf01f0472865c29350b0f61e30.jpg) no-repeat fixed center;
 }
 
 .createAccountCard {
-  min-width: 150px;
-  max-width: 500px;
-  width: 300px;
+  width: auto;
   margin: 5em 3em;
   padding: 0 20px;
   display: inline-block;

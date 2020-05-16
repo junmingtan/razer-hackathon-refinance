@@ -7,10 +7,10 @@ const Skill = ({name, icon}) => (
     </div>
 )
 
-const Profile = ({user: {level, exp_earned, exp_required, skills}}) => {
+const Profile = ({user: {level, exp_earned, exp_required, skills, title}}) => {
     return (<div className="card">
         <div className="level">
-            Level {level} Grandmaster
+            Level {level} {title}
         </div>
         <div className="experience_container">
             <ProgressBar progress={exp_earned / exp_required * 100} frontColor="#7BC415FF" backColor="#AEFF0088"/>

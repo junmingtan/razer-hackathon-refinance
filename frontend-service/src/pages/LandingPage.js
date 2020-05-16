@@ -23,8 +23,9 @@ const defaultUser = {
 }
 
 
-const LandingPage = ({handleNav, quests=defaultQuests, user=defaultUser}) => {
-    const {name, balance} = user;
+const LandingPage = ({handleNav, quests=defaultQuests, user=defaultUser, handleCollectQuest}) => {
+    const {firstName, lastName, balance, title} = user;
+    const name = `${firstName} ${lastName}`
     useEffect(() => {
         fetch("/user/123")
             .then((e) => e.json())
@@ -60,10 +61,10 @@ const LandingPage = ({handleNav, quests=defaultQuests, user=defaultUser}) => {
                 <Profile user={user}/>
             </Section>
             <Section section="Quests">
-                {quests.map(q => <QuestCard quest={q} key={q.name} handleClick={() => handleClick(q)}/>)}
+                {quests.filter(q => q.progress > 0 && !q.completed).map(q => <QuestCard quest={q} key={q.name} handleClick={() => handleClick(q)}/>)}
             </Section>
         </div>
-          <QuestModal open={modalOpen} quest={openQuest} handleClose={() => setModalOpen(false)} />
+          <QuestModal open={modalOpen} quest={openQuest} handleClose={() => setModalOpen(false)} onCollect={() => {handleCollectQuest(openQuest); setModalOpen(false)}}/>
         <BottomNavBar active={"home"} handleNav={handleNav}/>
       </div>
     );

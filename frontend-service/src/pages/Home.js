@@ -18,6 +18,7 @@ class Home extends Component {
         <div className="home">
           {this.state.login ? (
             <LoginCard
+                handleLogin={this.props.handleLogin}
               handleChangePage={this.props.handleChangePage}
               handleChangeCard={this.handleChangeCard}
             />
