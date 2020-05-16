@@ -4,9 +4,8 @@ import VisaCard from "../components/VisaCard";
 import Profile from "../components/Profile";
 
 import "./LandingPage.css";
-import ProgressBar from "../components/ProgressBar";
 import Hero from "../components/Hero";
-import QuestCard from "../components/QuestCard.jsx";
+import QuestCard, { QuestModal } from "../components/QuestCard";
 import Section from "../components/Section";
 
 const defaultQuests = [
@@ -29,18 +28,38 @@ const defaultUser = {
   skills: []
 };
 
+// const LandingPage = ({
+//   handleNav,
+//   quests = defaultQuests,
+//   user = defaultUser
+// }) => {
+//   const { name, balance } = user;
+//   useEffect(() => {
+//     fetch("/user/123")
+//       .then(e => e.json())
+//       .then(b => console.log(b));
+//   });
+
 const LandingPage = ({
   handleNav,
   quests = defaultQuests,
-  user = defaultUser
+  user = defaultUser,
+  handleCollectQuest
 }) => {
-  const { name, balance } = user;
+  const { firstName = "Shin", lastName = "Chan", balance = 5683 } = user;
+  const name = `${firstName} ${lastName}`;
   useEffect(() => {
     fetch("/user/123")
       .then(e => e.json())
       .then(b => console.log(b));
   });
 
+  const [openQuest, setOpenQuest] = useState({});
+  const [modalOpen, setModalOpen] = useState(false);
+  const handleClick = q => {
+    setOpenQuest(q);
+    setModalOpen(true);
+  };
   return (
     <div className="page">
       <Hero
@@ -58,15 +77,30 @@ const LandingPage = ({
         }
       />
       <div className="content">
-        <Section section="Profile">
+        <Section section="Profile" onClick={() => handleNav("perks")}>
           <Profile user={user} />
         </Section>
         <Section section="Quests">
-          {quests.map(q => (
-            <QuestCard quest={q} key={q.name} />
-          ))}
+          {quests
+            .filter(q => q.progress > 0 && !q.completed)
+            .map(q => (
+              <QuestCard
+                quest={q}
+                key={q.name}
+                handleClick={() => handleClick(q)}
+              />
+            ))}
         </Section>
       </div>
+      <QuestModal
+        open={modalOpen}
+        quest={openQuest}
+        handleClose={() => setModalOpen(false)}
+        onCollect={() => {
+          handleCollectQuest(openQuest);
+          setModalOpen(false);
+        }}
+      />
       <BottomNavBar active={"home"} handleNav={handleNav} />
     </div>
   );

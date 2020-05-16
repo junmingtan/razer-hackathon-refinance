@@ -37,10 +37,7 @@ class CreateAccountCard extends Component {
   };
 
   handleSubmit = handleCreateUser => {
-    handleCreateUser({
-      firstName: this.state.firstName,
-      lastName: this.state.lastName
-    });
+    handleCreateUser(this.state);
   };
 
   render() {

@@ -13,7 +13,7 @@ import BottomNavBar from "../components/BottomNavBar";
 import Hero from "../components/Hero";
 
 /*
-image has: 
+image has:
       active: "https://image.flaticon.com/icons/svg/2695/2695674.svg",
       inactive: "https://image.flaticon.com/icons/png/512/2695/2695678.png",
       title: "ss",
@@ -63,6 +63,7 @@ class Perks extends Component {
   };
 
   render() {
+    console.log(this.props);
     return (
       <React.Fragment>
         <Hero
@@ -99,21 +100,21 @@ class Perks extends Component {
         <div className="perks">
           <SkillTreeModal
             handleCloseModal={this.handleCloseModal}
+            handleUpgrade={this.props.handleUpgrade}
             open={this.state.openModal}
             image={this.state.image}
             userLevel={2}
           />
           <SkillTreeNavBar
-            values={this.getCatergories(images)}
+            values={this.getCatergories(this.props.skillTree)}
             category={this.state.category}
             handleChangeCategory={this.handleChangeCategory}
           />
           <SkillTree
-            images={images[this.state.category]}
+            images={this.props.skillTree[this.state.category]}
             handleOpenModal={this.handleOpenModal}
           />
         </div>
-        <div style={{ padding: "100px" }}></div>
         <BottomNavBar active="perks" handleNav={this.props.handleNav} />
       </React.Fragment>
     );

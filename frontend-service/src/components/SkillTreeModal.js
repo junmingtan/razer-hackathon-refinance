@@ -11,7 +11,8 @@ export default function SimpleModal({
   handleCloseModal,
   open,
   image,
-  userLevel
+  userLevel,
+  handleUpgrade
 }) {
   const body = (
     <div className="skillTreeModal">
@@ -42,6 +43,7 @@ export default function SimpleModal({
           variant="contained"
           color="primary"
           disabled={userLevel < image.min_level ? true : false}
+          onClick={() => handleUpgrade(image.pid)}
         >
           Upgrade
         </Button>

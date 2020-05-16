@@ -17,14 +17,14 @@ const defaultQuests = [
     },
     {
         name: "Direct credit your salary",
-        progress: 2,
+        progress: 0,
         criteria: 6,
         exp: 500,
         description: "Have you started your career? Congratulations! Let's set up direct credit so that we can keep track of your finances together!"
     },
     {
         name: "Save into fixed deposits",
-        progress: 2200,
+        progress: 0,
         criteria: 10000,
         exp: 1000,
         description: "You never know when a rainy day will happen. "
@@ -86,7 +86,7 @@ const Quests = ({quests=defaultQuests, handleNav}) => {
     return (
     <div className="page">
         <Hero
-            backgroundImage={"/hero_quest.jpg"}
+            backgroundImage={"/hero_quest.png"}
             heroContent={
                 <div>
                     <h2 style={{marginBottom: "0px"}}>Quests</h2>

@@ -1,6 +1,6 @@
 import ProgressBar from "./ProgressBar";
 import React from "react";
-import Modal from "@material-ui/core/Modal";
+import {Modal, Button} from "@material-ui/core";
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
 
@@ -41,7 +41,16 @@ export const QuestModal = ({open, handleClose, quest, onCollect=() => console.lo
                 <div>{description}</div>
                 <p>Completed: {progress} of {criteria}</p>
                 <ProgressBar frontColor={progress > 0 ? "#7BC415FF" : "#2c6ec4FF"} backColor={progress > 0 ? "#AEFF0088" : "#A2EEFF88"} progress={progress / criteria * 100} />
-                <div className={`button ${available ? "available" : ""}`} onClick={() => available ? onCollect(quest) : ""}>{exp} EXP</div>
+                <Button
+                    variant="contained"
+                    color="secondary"
+                    disableElevation
+                    disabled={!available}
+                    className={"button"}
+                    onClick={() => available ? onCollect(quest) : ""}
+                >
+                    {exp} EXP
+                </Button>
             </div>
         </Fade>
     </Modal>

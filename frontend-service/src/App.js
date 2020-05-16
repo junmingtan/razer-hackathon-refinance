@@ -12,43 +12,160 @@ import Quests from "./pages/Quests";
 import Transfer from "./pages/Transfer";
 import History from "./pages/History";
 
+const defaultQuests = [
+  {
+    name: "Create account",
+    progress: 1,
+    criteria: 1,
+    exp: 500,
+    description:
+      "Hooray, you joined us! It's such a momentous event that it's even helped you clear your first quest!"
+  },
+  {
+    name: "Direct credit your salary",
+    progress: 0,
+    criteria: 6,
+    exp: 500,
+    description:
+      "Have you started your career? Congratulations! Let's set up direct credit so that we can keep track of your finances together!"
+  },
+  {
+    name: "Save into fixed deposits",
+    progress: 0,
+    criteria: 10000,
+    exp: 1000,
+    description: "You never know when a rainy day will happen. "
+  },
+  {
+    name: "Get married to The One",
+    progress: 0,
+    criteria: 1,
+    exp: 2000,
+    description:
+      "Some people think that it's impossible. Others say that there are more than one. " +
+      "Whatever it is, you've found your soulmate! Let us celebrate by helping you unlock your next perk!"
+  }
+];
+
 // Sample user level
 class App extends Component {
   state = {
     // Sets which page is to be rendered
-    page: "perks",
-    user: ""
+    page: "",
+    user: {},
+    account: {},
+    quests: [],
+    userId: "",
+    accountId: "",
+    skillTree: {},
+    // Should be part of user but oh well
+    skillPoints: 1,
+    level: 1
   };
 
-  handleGetUserById = client_id => {
-    const requestOptions = {
-      method: "GET",
-      headers: { "Content-Type": "application/json" }
-    };
-    fetch("/user/" + client_id, requestOptions)
-      .then(e => e.json())
-      .then(user => {
-        this.setState({ user });
-        if (this.state.user != "") {
-          this.setState({ page: "home" });
+  handleUpgradeSkillTree = pid => {
+    const skillTree = Object.assign(this.state.skillTree, {});
+    Object.entries(skillTree["travel"]).map(([category, value]) => {
+      value.map((e, index) => {
+        if (e.pid == pid) {
+          skillTree["travel"][category][index].is_active = true;
         }
+      });
+    });
+
+    this.state.skillPoints -= 1;
+    this.setState({ skillTree });
+  };
+  updateUserAndAccount = mambuid => {
+    const mambuuser = fetch("/user/" + mambuid).then(r => r.json());
+    const account = fetch("/accounts/" + mambuid)
+      .then(r => r.json())
+      .then(a => a[0]);
+    const quests = fetch("/quest/" + mambuid)
+      .then(r => r.json())
+      .then(q => this.setState({ quests: q }))
+      .catch(e => {
+        console.log(e);
+        this.setState({ quests: defaultQuests });
+      });
+
+    const skillTree = fetch("/skilltree/" + mambuid)
+      .then(e => e.json())
+      .then(skillTree => {
+        this.setState({ skillTree });
+        console.log(skillTree);
+      })
+      .catch(err => console.log(err));
+
+    return Promise.all([mambuuser, account, skillTree])
+      .then(([mambuuser, account]) => {
+        const { firstName, lastName } = mambuuser;
+        const { balance } = account;
+        console.log(quests);
+
+        const user = {
+          level: 0,
+          title: "Beginner",
+          exp_earned: 0,
+          exp_required: 500,
+          skills: [],
+          balance,
+          firstName,
+          lastName
+        };
+        this.setState({ user });
+      })
+      .catch(e => console.log(e));
+  };
+
+  handleCollectQuest = quest => {
+    let { quests, user } = this.state;
+    let q = quests.filter(q => q.name !== quest.name);
+    quest.completed = true;
+    q.push(quest);
+    user.exp_earned += quest.exp;
+    this.setState({ quests: q, user });
+  };
+
+  handleLogin = login => {
+    const requestOptions = {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(login)
+    };
+    fetch("/login", requestOptions)
+      .then(e => e.json())
+      .then(({ firstname, lastname, mambuid }) => {
+        this.updateUserAndAccount(mambuid).then(() =>
+          this.handleChangePage("home")
+        );
       })
       .catch(err => console.log(err));
   };
 
-  handleCreateUser = ({ firstName, lastName }) => {
+  handleCreateUser = ({ firstName, lastName, email, password }) => {
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         firstname: firstName,
-        lastname: lastName
+        lastname: lastName,
+        email: email,
+        password
       })
     };
     fetch("/user/create", requestOptions)
       .then(e => e.json())
-      .then(client_id => this.handleGetUserById(client_id))
-      .catch(err => console.log(err));
+      .then(({ mambuid, success }) => {
+        this.setState({ userId: mambuid });
+        return mambuid;
+      })
+      .catch(err => console.log(err))
+      .then(mambuid => {
+        this.updateUserAndAccount(mambuid).then(() =>
+          this.handleChangePage("home")
+        );
+      });
   };
 
   handleChangePage = page => {
@@ -56,26 +173,42 @@ class App extends Component {
     this.setState({ page });
   };
   renderPage = page => {
+    const { user, quests } = this.state;
     switch (page) {
       default:
         return (
           <Home
+            handleLogin={this.handleLogin}
             handleCreateUser={this.handleCreateUser}
             handleChangePage={this.handleChangePage}
           />
         );
       case "home":
-        return <LandingPage handleNav={this.handleChangePage} />;
+        return (
+          <LandingPage
+            handleNav={this.handleChangePage}
+            user={user}
+            quests={quests}
+            handleCollectQuest={this.handleCollectQuest}
+          />
+        );
       case "perks":
         return (
           <Perks
-            skillPoints={3}
-            userLevel={7}
+            skillPoints={this.state.skillPoints}
+            userLevel={this.state.level}
             handleNav={this.handleChangePage}
+            skillTree={this.state.skillTree}
+            handleUpgrade={this.handleUpgradeSkillTree}
           />
         );
       case "quests":
-        return <Quests handleNav={this.handleChangePage} />;
+        return (
+          <Quests
+            handleNav={this.handleChangePage}
+            handleCollectQuest={this.handleCollectQuest}
+          />
+        );
       case "transfer":
         return <Transfer handleNav={this.handleChangePage} />;
       case "history":

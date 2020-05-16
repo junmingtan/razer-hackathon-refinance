@@ -57,7 +57,7 @@ class LoginCard extends Component {
             <Button
               variant="contained"
               color="primary"
-              onClick={this.handleSubmit}
+              onClick={() => this.props.handleLogin(this.state)}
             >
               Submit
             </Button>
