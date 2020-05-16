@@ -150,7 +150,7 @@ class Db_driver:
         insert_query = '''insert into `user` (uid, first_name, last_name, user_level, exp_earned, skill_point) values (%s, %s, %s, %s, %s, %s)'''
         data = (new_user["user_id"], new_user["first_name"], new_user["last_name"], new_user["user_level"], new_user["exp_earned"], new_user["skill_point"])
         cur.execute(insert_query, data)
-        self.db_conn.commit()
+        self.db_conn.connection.commit()
         return None
 
     def update_user_quest(self, new_user_quest):
@@ -164,7 +164,7 @@ class Db_driver:
         insert_query = '''insert into user_quest (uid, qid, progress, clear_condition, completed) values (%s, %s, %s, %s, %s)'''
         data = (new_user_quest["uid"], new_user_quest["qid"], new_user_quest["progress"], clear_condition, new_user_quest["completed"])
         cur.execute(insert_query, data)
-        self.db_conn.commit()
+        self.db_conn.connection.commit()
         return None
 
 
