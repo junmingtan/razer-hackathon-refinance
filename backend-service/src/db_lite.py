@@ -25,8 +25,10 @@ class DbLite:
         try:
             c.execute(sql_insert_user, data)
             conn.commit()
+            conn.close()
             return (True, None)
         except Error as e:
+            conn.close()
             return (False, e)
     
     def getUser(self, email):
@@ -34,8 +36,11 @@ class DbLite:
         c = conn.cursor()
         try:
             c.execute('SELECT * FROM users WHERE email = ?', (email,))
-            return (True, c.fetchall())
+            result = c.fetchall()
+            conn.close()
+            return (True, result)
         except Error as e:
+            conn.close()
             return (False, e)
     
     def getAllUsers(self):
@@ -43,8 +48,11 @@ class DbLite:
         c = conn.cursor()
         try:
             c.execute('SELECT * FROM users')
-            return (True, c.fetchall())
+            result = c.fetchall()
+            conn.close()
+            return (True, result)
         except Error as e:
+            conn.close()
             return (False, e)
 
 

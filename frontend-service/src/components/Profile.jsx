@@ -7,17 +7,16 @@ const Skill = ({name, icon}) => (
     </div>
 )
 
-const Profile = ({level, experience, skills}) => {
-    const [progress, setProgress] = useState(80);
+const Profile = ({user: {level, exp_earned, exp_required, skills}}) => {
     return (<div className="card">
         <div className="level">
             Level {level} Grandmaster
         </div>
-        <div className="experience_container" onClick={() => setProgress(Math.random() * 100)}>
-            <ProgressBar progress={progress} frontColor="#7BC415FF" backColor="#AEFF0088"/>
+        <div className="experience_container">
+            <ProgressBar progress={exp_earned / exp_required * 100} frontColor="#7BC415FF" backColor="#AEFF0088"/>
         </div>
         <div className="skills_container">
-
+            {skills.map(s => <div>{s}</div>)}
         </div>
     </div>)
 }

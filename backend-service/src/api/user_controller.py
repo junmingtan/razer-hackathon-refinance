@@ -1,9 +1,10 @@
 from flask import Blueprint, request, jsonify
 from mambu_client import mambu_client
-from db_driver import db_driver
 from db_lite import db_lite
 
 user_api = Blueprint('user_api', __name__)
+
+from db_driver import db_driver
 
 @user_api.route('/user/create', methods=['POST'])
 def createUser():
@@ -16,7 +17,7 @@ def createUser():
 
     success, e = db_lite.insertUser((email, password, firstname, lastname, client_id))
     if not success:
-        return jsonify(success=False, msg=e)
+        return jsonify(success=False, msg=str(e))
 
     new_user = {}
     new_user["user_id"] = client_id
@@ -48,7 +49,7 @@ def login():
     success, db_result = db_lite.getUser(email)
     
     if not success:
-        return jsonify(success=False, msg=db_result)
+        return jsonify(success=False, msg=str(db_result))
 
     user = db_result[0]
     print(user)
@@ -59,5 +60,7 @@ def login():
 @user_api.route('/user/all', methods=['GET'])
 def allUsers():
     success, db_result = db_lite.getAllUsers()
+    if not success:
+        return jsonify(success=False, msg=str(db_result))
     return jsonify(db_result)
 
