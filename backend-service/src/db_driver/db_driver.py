@@ -72,7 +72,7 @@ def get_skill_tree(db_conn, uid):
 
 
     cur = db_conn.connection.cursor()
-    user_perk_query = "select pid from perk where uid = %s" % (uid)
+    user_perk_query = "select pid from perk where uid = '%s'" % (uid)
     cur.execute(user_perk_query)
     user_perk_result = list(cur.fetchall())
     user_perk_result = {item for item in user_perk_result} # creates a set of perk ids 
@@ -113,9 +113,26 @@ def update_skill_tree(db_conn, uid, new_tree):
             for item in item_list:
                 if item["is_active"]:
                     pid = item["pid"]
-                    delete_query = "delete from user_perk where uid = %s and pid = %d" % (uid, pid)
+                    delete_query = "delete from user_perk where uid = '%s' and pid = %d" % (uid, pid)
                     cur.execute(delete_query)
-                    insert_query = "insert into user_perk (uid, pid) values (%s, %d)" % (uid, pid)
+                    insert_query = "insert into user_perk (uid, pid) values ('%s', %d)" % (uid, pid)
                     cur.execute(insert_query)
                     db_conn.connection.commit()
+
+
+def get_quest(db_conn):
+    cur = db_conn.connection.cursor()
+    quest_query = "select * from quest"
+    cur.execute(quest_query)
+    quests = list(cur.fetchall())
+    return quests
+
+def get_user_quest(db_conn, uid):
+    cur = db_conn.connection.cursor()
+    user_quest_query = "select uid, pid, progress, clear_condition, completed from user_quest where uid = '%s'" % (uid)
+    cur.execute(user_quest_query)
+    user_quest_result = list(cur.fetchall())
+    for item in user_quest_result:
+        item['completed'] = True if item['completed'] > 0 else False
+    return user_quest_result
     
