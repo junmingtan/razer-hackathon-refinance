@@ -1,0 +1,22 @@
+.imageCard {
+  --active-color: #43d300;
+  --hover-color: #bdcf14;
+  --inactive-color: #dddddd;
+}
+
+.imageCard {
+  width: 50px;
+  border: 3px solid var(--inactive-color);
+  padding: 4px;
+  border-radius: 10%;
+  transition: all 0.5s ease-out;
+}
+
+.imageCard:hover {
+  cursor: pointer;
+  border: 3px solid var(--hover-color);
+}
+
+.imageCard--active {
+  border: 3px solid var(--active-color);
+}
