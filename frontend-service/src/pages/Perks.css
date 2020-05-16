@@ -1,0 +1,32 @@
+.perks {
+  text-align: center;
+}
+.perks__title {
+  width: 100%;
+  padding: 2% 0;
+  font-size: 1.5em;
+  font-weight: 700;
+}
+
+.perks__footer {
+  margin-top: 1em;
+  font-size: 1.2em;
+  font-weight: 500;
+}
+
+.perks__icon {
+  color: #507e2a;
+  margin: 0.2em;
+  display: inline-block;
+}
+
+.perks__icon__text {
+  font-size: 0.4em;
+}
+
+.perks__icon__num {
+  /* display: inline-block; */
+  margin-left: 8%;
+  font-size: 0.8em;
+  padding-bottom: 10px;
+}
