@@ -25,6 +25,10 @@ def health():
 def home():
     html = """
             <html>
+                <head>
+                    <title>API Endpoints</title>
+                    <h3>REfinance Backened API Endpoints</h3>
+                </head>
                 <body>
                     <b> POST /user/create </b> <br>
                     Request body: {firstname, lastname} <br>
@@ -47,6 +51,20 @@ def home():
                     <b> POST /fwd </b> <br>
                     Request body: {base64image} <br>
                     Get nric fields in base64 encoded image
+                    <br><br>
+                    <b style="color:red"> GET /skilltree/&ltuser_id&gt </b> <br>
+                    Get the skilltree of the user with user_id
+                    <br><br>
+                    <b style="color:red"> POST /skilltree </b> <br>
+                    Request body: {user_id, skilltree} <br>
+                    Updates the skilltree of the user with user_id
+                    <br><br>
+                    <b style="color:red"> GET /quest/&ltuser_id&gt </b> <br>
+                    Get quests of the user with user_id
+                    <br><br>
+                    <b style="color:red"> POST /quest </b> <br>
+                    Request body: {user_id, skilltree} <br>
+                    Updates the quests of the user with user_id
                 </body>
             </html>
     """
