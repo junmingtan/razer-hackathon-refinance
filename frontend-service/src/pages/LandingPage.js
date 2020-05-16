@@ -24,7 +24,7 @@ const defaultUser = {
 
 
 const LandingPage = ({handleNav, quests=defaultQuests, user=defaultUser, handleCollectQuest}) => {
-    const {firstName, lastName, balance, title} = user;
+    const {firstName="Shin", lastName="Chan", balance=5683} = user;
     const name = `${firstName} ${lastName}`
     useEffect(() => {
         fetch("/user/123")
