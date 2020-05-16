@@ -64,9 +64,30 @@ h2 {
     position: relative;
 }
 
-.hero h1 {
+.hero h1, .hero p {
     text-align: center;
     color: white;
+}
+
+.hero h1 {
     font-size: 1em;
     font-weight: 600;
+}
+
+.top_bar {
+    display: flex;
+    align-items: center;
+    height: 40px;
+    width: 100%;
+    position: fixed;
+    padding: 4px;
+    top: 0px;
+    opacity: 0;
+    color: white;
+    background-color: #463657;
+}
+
+.top_bar p {
+    font-size: 0.8em;
+    font-weight: 400;
 }
