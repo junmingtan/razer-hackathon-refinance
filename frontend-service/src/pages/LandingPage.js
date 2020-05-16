@@ -19,23 +19,48 @@ const defaultQuests = [
     ];
 
 const defaultUser = {
-    name: "Shin Chan"
+    name: "Shin Chan",
+    balance: 5683
 }
 
-const LandingPage = ({handleNav, quests=defaultQuests, user: {name}=defaultUser}) => {
-    const ref = useRef();
+let travel;
+
+function calcFadeIn(offsetHeight, bottom) {
+    const bar_height = 40
+    if (!travel) {
+        travel = offsetHeight - bar_height;
+    }
+    const progress = (travel - (bottom * 2)) / (travel / 2)
+    return Math.min(1, progress)
+}
+
+
+const LandingPage = ({handleNav, quests=defaultQuests, user: {name, balance}=defaultUser}) => {
+    const ref = useRef()
     useEffect(() => {
-        document.onscroll = (e) => setOffset(document.scrollingElement.scrollTop * 1)
+        document.onscroll = (e) => {
+            const bottom = ref.current.getBoundingClientRect().bottom
+            setFadeOut(ref.current.offsetHeight - bottom)
+            setFadeIn( calcFadeIn(ref.current.offsetHeight, bottom))
+        }
     })
-    const [offset, setOffset] = useState(0);
+    const [fadeOut, setFadeOut] = useState(0);
+    const [fadeIn, setFadeIn] = useState(0);
     return (
-      <div className="page" ref={ref}>
-          <div className="hero">
+      <div className="page">
+          <div className="hero" ref={ref}>
               {/*<VisaCard />*/}
-              <div className="hero-content" style={{marginTop: `${offset}px`}}>
+              <div className="hero-content" style={{marginTop: `${fadeOut}px`, opacity: `${Math.max(0, 1 - (fadeOut / 100))}`}}>
                   <h1>
                       Welcome back, {name}
                   </h1>
+                  <p>${balance}</p>
+              </div>
+          </div>
+          <div className="top_bar" style={{opacity: `${fadeIn}`}}>
+              <div style={{marginLeft: `${20 - (fadeIn - 0.5) * 2 * 10}px`}}>
+                  <p>${name}</p>
+                  <p>${balance}</p>
               </div>
           </div>
         <div className="content" style={{height: "200vh"}}>
