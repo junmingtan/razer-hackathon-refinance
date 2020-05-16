@@ -9,11 +9,14 @@ db = db_setup(application) # Returns connection object if successful, else None
 from api.user_controller import user_api
 from api.account_controller import account_api
 from api.fwd_controller import fwd_api
-
+from api.skilltree_controller import skilltree_api
+from api.quest_controller import quest_api
 
 application.register_blueprint(user_api)
 application.register_blueprint(account_api)
 application.register_blueprint(fwd_api)
+application.register_blueprint(skilltree_api)
+application.register_blueprint(quest_api)
 
 @application.route('/health', methods=['GET'])
 def health():
