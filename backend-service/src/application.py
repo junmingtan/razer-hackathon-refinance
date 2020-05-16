@@ -24,6 +24,12 @@ def home():
                     POST /user/create {firstname, lastname}
                     <br>
                     GET /user/&ltuser_id&gt
+
+                    <br><br>
+                    
+                    POST /account/create {user_id}
+                    <br>
+                    GET /account/&ltaccount_id&gt
                 </body>
             </html>
     """
