@@ -21,7 +21,7 @@ class Perks extends Component {
             </div>
           </div>
         </div>
-        <BottomNavBar active="perks" handleNav={this.props.handleNav}/>
+        <BottomNavBar active="perks" handleNav={this.props.handleNav} />
       </React.Fragment>
     );
   }
