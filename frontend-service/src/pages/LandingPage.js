@@ -5,6 +5,7 @@ import Profile from '../components/Profile';
 
 import "./LandingPage.css";
 import ProgressBar from "../components/ProgressBar";
+import Hero from "../components/Hero";
 
 const Section = ({section, children}) => (
     <div className="section">
@@ -23,46 +24,32 @@ const defaultUser = {
     balance: 5683
 }
 
-let travel;
-
-function calcFadeIn(offsetHeight, bottom) {
-    const bar_height = 40
-    if (!travel) {
-        travel = offsetHeight - bar_height;
-    }
-    const progress = (travel - (bottom * 2)) / (travel / 2)
-    return Math.min(1, progress)
-}
-
 
 const LandingPage = ({handleNav, quests=defaultQuests, user: {name, balance}=defaultUser}) => {
-    const ref = useRef()
     useEffect(() => {
-        document.onscroll = (e) => {
-            const bottom = ref.current.getBoundingClientRect().bottom
-            setFadeOut(ref.current.offsetHeight - bottom)
-            setFadeIn( calcFadeIn(ref.current.offsetHeight, bottom))
-        }
+        fetch("/user/123")
+            .then((e) => e.json())
+            .then(b => console.log(b))
     })
-    const [fadeOut, setFadeOut] = useState(0);
-    const [fadeIn, setFadeIn] = useState(0);
+
     return (
       <div className="page">
-          <div className="hero" ref={ref}>
-              {/*<VisaCard />*/}
-              <div className="hero-content" style={{marginTop: `${fadeOut}px`, opacity: `${Math.max(0, 1 - (fadeOut / 100))}`}}>
-                  <h1>
-                      Welcome back, {name}
-                  </h1>
-                  <p>${balance}</p>
-              </div>
-          </div>
-          <div className="top_bar" style={{opacity: `${fadeIn}`}}>
-              <div style={{marginLeft: `${20 - (fadeIn - 0.5) * 2 * 10}px`}}>
-                  <p>${name}</p>
-                  <p>${balance}</p>
-              </div>
-          </div>
+          <Hero
+            heroContent={
+                <div>
+                    <h1>
+                        Welcome back, {name}
+                    </h1>
+                    <p>${balance}</p>
+                </div>
+            }
+            navbarContent={
+                <div>
+                    <p>${name}</p>
+                    <p>${balance}</p>
+                </div>
+            }
+          />
         <div className="content">
             <Section section="Profile">
                 <Profile />
