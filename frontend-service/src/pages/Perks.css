@@ -9,13 +9,14 @@
 }
 
 .perks__footer {
-  margin-top: 1em;
+  width: 100%;
   font-size: 1.2em;
   font-weight: 500;
+  text-align: center;
 }
 
 .perks__icon {
-  color: #507e2a;
+  color: #ffffff;
   margin: 0.2em;
   display: inline-block;
 }

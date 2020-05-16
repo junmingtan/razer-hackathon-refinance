@@ -15,7 +15,7 @@ import History from "./pages/History";
 class App extends Component {
   state = {
     // Sets which page is to be rendered
-    page: "",
+    page: "perks",
     user: ""
   };
 

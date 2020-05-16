@@ -6,6 +6,7 @@ import SkillTreeModal from "../components/SkillTreeModal";
 import "./Perks.css";
 import { GiRevolt } from "react-icons/gi";
 import BottomNavBar from "../components/BottomNavBar";
+import Hero from "../components/Hero";
 
 /*
 image has: 
@@ -47,6 +48,28 @@ class Perks extends Component {
   render() {
     return (
       <React.Fragment>
+        <Hero
+          heroContent={
+            <div className="perks__footer">
+              <div className="perks__icon">
+                <div style={{ marginBottom: "5px" }}>You have</div>
+                <GiRevolt />
+                <span className="perks__icon__num">2</span>
+                <div className="perks__icon__text">Skillpoints</div>
+              </div>
+            </div>
+          }
+          navbarContent={
+            <div className="perks__footer">
+              <div className="perks__icon">
+                <GiRevolt />
+                <span className="perks__icon__num">2</span>
+                <div className="perks__icon__text">Skillpoints</div>
+              </div>
+            </div>
+          }
+        />
+
         <div className="perks">
           <SkillTreeModal
             handleCloseModal={this.handleCloseModal}
@@ -62,14 +85,8 @@ class Perks extends Component {
             images={images[this.state.category]}
             handleOpenModal={this.handleOpenModal}
           />
-          <div className="perks__footer">
-            <div className="perks__icon">
-              <GiRevolt />
-              <span className="perks__icon__num">2</span>
-              <div className="perks__icon__text">Skillpoints</div>
-            </div>
-          </div>
         </div>
+        <div style={{ padding: "100px" }}></div>
         <BottomNavBar active="perks" handleNav={this.props.handleNav} />
       </React.Fragment>
     );
