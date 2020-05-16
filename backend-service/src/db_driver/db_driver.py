@@ -17,20 +17,24 @@ def get_skill_tree(db_conn, uid):
     Example return object:
     full_skill_tree = {
         "travel" : {                # where type is travel, food or retail
-            "novice" : {            # where category is none, novice etc
-                "airplane" : {
+            "novice" : [            # where category is none, novice etc
+                {
                     "pid" : 3,
+                    "name" : "",
+                    "description" : "",
                     "active" : "https://flaticon.com/xyz",
                     "inactive" : "https://flaticon.com/abc",
                     "is_active" : True
                 },
-                "bus" : {
+                {
                     "pid" : 5,
+                    "name" : "",
+                    "description" : "",
                     "active" : "https://flaticon.com/xyz",
                     "inactive" : "https://flaticon.com/abc",
                     "is_active" : False
                 }
-            }
+            ]
         }
     }
     '''
@@ -45,34 +49,25 @@ def get_skill_tree(db_conn, uid):
         '''
         categories = {}
         for item in results_list:
-            if item['category'] not in categories:
-                elements = {}
-                elements[item['name']] = {
-                    "pid": item['pid'],
-                    "active": item['active_url'],
-                    "inactive": item['inactive_url']
-                }
-                element_item = elements[item['name']]
-                if item['pid'] in user_perk_result:
-                    element_item["is_active"] = True
-                else:
-                    element_item["is_active"] = False
-                elements[item['name']] = element_item
-                categories[item['category']] = elements
+            if item['category'] is None:
+                item['category'] = "none"
+            elements = categories.get(item['category'], [])     # Return empty list if not in categories
+            new_item = {
+                "pid" : item['pid'],
+                "name" : item['name'],
+                "active": item['active_url'],
+                "inactive": item['inactive_url']
+            }
+            if item['pid'] in user_perk_result:
+                new_item["is_active"] = True
             else:
-                elements = categories[item['category']]
-                elements[item['name']] = {
-                    "pid": item['pid'],
-                    "active": item['active_url'],
-                    "inactive": item['inactive_url']
-                }
-                element_item = elements[item['name']]
-                if item['pid'] in user_perk_result:
-                    element_item["is_active"] = True
-                else:
-                    element_item["is_active"] = False
-                elements[item['name']] = element_item
-                categories[item['category']] = elements
+                new_item["is_active"] = False
+            if item['description'] is None:
+                new_item["description"] = ""
+            else:
+                new_item["description"] = item["description"]
+            elements.append(new_item)
+            categories[item['category']] = elements
         return categories
 
 
