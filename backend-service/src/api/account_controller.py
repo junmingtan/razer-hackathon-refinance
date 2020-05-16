@@ -10,6 +10,11 @@ def createAccount():
     return jsonify(account_id = account_id)
 
 @account_api.route('/account/<string:account_id>', methods=['GET'])
-def getUser(account_id):
+def getAccount(account_id):
     result = mambu_client.getCurrentAccount(account_id)
+    return jsonify(result)
+
+@account_api.route('/accounts/<string:user_id>', methods=['GET'])
+def getAccounts(user_id):
+    result = mambu_client.getCurrentAccounts(user_id)
     return jsonify(result)

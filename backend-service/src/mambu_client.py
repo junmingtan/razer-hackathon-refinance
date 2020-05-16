@@ -51,6 +51,11 @@ class MambuClient:
         r = requests.get(url, auth=(self.team_name, self.password))
         return r.json()
 
+    def getCurrentAccounts(self, user_id):
+        url = self.endpoint + 'clients/'+ user_id +'/savings'
+        r = requests.get(url, auth=(self.team_name, self.password))
+        return r.json()
+
     def createCurrentAccount(self, clientid):
         url = self.endpoint + 'savings'
         payload = {

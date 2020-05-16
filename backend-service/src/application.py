@@ -21,15 +21,23 @@ def home():
     html = """
             <html>
                 <body>
-                    POST /user/create {firstname, lastname}
-                    <br>
-                    GET /user/&ltuser_id&gt
-
+                    <b> POST /user/create </b> <br>
+                    Request body: {firstname, lastname} <br>
+                    Creates a new user
+                    <br><br>
+                    <b> GET /user/&ltuser_id&gt </b> <br>
+                    Get user by user_id
                     <br><br>
                     
-                    POST /account/create {user_id}
-                    <br>
-                    GET /account/&ltaccount_id&gt
+                    <b> POST /account/create </b> <br>
+                    Request body: {user_id} <br>
+                    Creates a new account for user with user_id
+                    <br><br>
+                    <b> GET /account/&ltaccount_id&gt </b> <br>
+                    Get account by account_id
+                    <br><br>
+                    <b> GET /accounts/&ltuser_id&gt </b> <br>
+                    Get all accounts owned by user with user_id
                 </body>
             </html>
     """
