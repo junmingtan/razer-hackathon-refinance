@@ -1,30 +1,53 @@
+.createAccountCard__container {
+  background: url(https://cdn.mos.cms.futurecdn.net/odLUHcFdsFcUey9pCfvF7F-650-80.jpg);
+}
+
 .createAccountCard {
-  min-width: 270px;
-  max-width: 30%;
-  height: 650px;
-  margin: 30px 10px 10px 10px;
-  padding: 20px;
+  min-width: 150px;
+  max-width: 500px;
+  width: 300px;
+  margin: 5em 3em;
+  padding: 0 20px;
+  display: inline-block;
+  padding-top: 40px;
+  background: white;
+  border-radius: 10px;
+}
+
+.createAccountCard__fnln {
+  width: 49%;
+  display: inline-block;
+}
+.createAccountCard__fnln--marginRight {
+  margin-right: 1%;
+}
+.createAccountCard__fnln--marginLeft {
+  margin-left: 1%;
 }
 
 .createAccountCard--login {
   height: 400px;
 }
 
+.createAccountCard__component {
+  margin: 6px 0;
+}
+
 .createAccountCard__header {
-  font-weight: 500;
-  font-size: 1.5em;
+  font-weight: bolder;
+  font-size: 1em;
   margin-bottom: 10%;
 }
 
 .createAccountCard__textField {
   width: 100%;
+  font-size: 0.2em;
 }
 
 .createAccountCard__footer {
-  position: relative;
   color: #575757;
-  top: 20px;
-  font-size: 0.85em;
+  margin: 20px 0;
+  font-size: 0.7em;
   text-align: center;
 }
 
