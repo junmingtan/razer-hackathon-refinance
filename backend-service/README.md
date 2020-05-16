@@ -11,3 +11,8 @@ pip install -r requirements.txt
 ```
 deactivate
 ```
+
+### Connecting to ec2 server
+```
+ssh -i "ee-default-keypair.pem" ubuntu@ec2-18-141-192-58.ap-southeast-1.compute.amazonaws.com
+```

@@ -2,7 +2,6 @@ import requests
 import json
 
 class MambuClient:
-
     def __init__(self):
         with open('../config.json', 'r') as config_file:
             configs = json.load(config_file)
@@ -21,7 +20,11 @@ class MambuClient:
         r = requests.get(url, auth=(self.team_name, self.password))
         print(r.json())
 
+    def createCurrentAccount(self):
+        url = self.endpoint
+        print(url)
+
 
 
 mambu_client = MambuClient()
-mambu_client.getCurrentAccount('WJKI761')
+mambu_client.createCurrentAccount()
