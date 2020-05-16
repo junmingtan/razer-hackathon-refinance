@@ -11,11 +11,3 @@ pip install -r requirements.txt
 ```
 deactivate
 ```
-
-### Install the EB CLI 
-```
-brew update
-brew install awsebcli
-```
-
-
