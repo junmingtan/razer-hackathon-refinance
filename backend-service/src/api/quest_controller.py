@@ -1,7 +1,8 @@
 from flask import Blueprint, request, jsonify
-from db_driver import db_driver
 
 quest_api = Blueprint('quest_api', __name__)
+
+from db_driver import db_driver
 
 @quest_api.route('/quest/<string:account_id>', methods=['GET'])
 def getUserQuest(account_id):

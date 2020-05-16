@@ -1,7 +1,8 @@
 from flask import Blueprint, jsonify, request
-from db_driver import db_driver
 
 skilltree_api = Blueprint('skilltree_api', __name__)
+
+from db_driver import db_driver
 
 @skilltree_api.route('/skilltree/<string:account_id>', methods=['GET'])
 def getSkillTree(account_id):
