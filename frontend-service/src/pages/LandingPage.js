@@ -26,6 +26,12 @@ const defaultUser = {
 
 
 const LandingPage = ({handleNav, quests=defaultQuests, user: {name, balance}=defaultUser}) => {
+    useEffect(() => {
+        fetch("/user/123")
+            .then((e) => e.json())
+            .then(b => console.log(b))
+    })
+
     return (
       <div className="page">
           <Hero
