@@ -4,14 +4,22 @@ from db_driver import db_driver
 quest_api = Blueprint('quest_api', __name__)
 
 @quest_api.route('/quest/<string:account_id>', methods=['GET'])
-def getAccount(account_id):
+def getUserQuest(account_id):
 
     result = None
 
     ###
     # Call database client here
     ###
-    result = db_driver.get_skill_tree(account_id)
+    result = db_driver.get_user_quest(account_id)
+
+    return jsonify(result)
+
+@quest_api.route('/quest/', methods=['GET'])
+def getQuest():
+    result = None
+
+    result = db_driver.get_quest()
 
     return jsonify(result)
 
