@@ -1,47 +1,72 @@
-.content {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    padding: 1em 1em;
+.page {
+    background-color: #fcfcfc;
 }
 
-.container {
+.content {
     display: flex;
-    justify-content: center;
     flex-direction: column;
     padding: 1em 1em;
-    border: 1px solid rgba(0, 0, 0, 0.04);
-    box-shadow: 2px 2px 4px 0px rgba(176, 176, 176, 0.31);
-    margin-bottom: 0.5em;
 }
 
 p {
     margin: 0px;
 }
 
-.container > div {
+h2 {
+    font-size: 1.2em;
+    font-weight: bolder;
+}
+
+/* Card items */
+
+.card {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 1em 1em;
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    box-shadow: 2px 2px 4px 0px rgba(176, 176, 176, 0.31);
+    background-color: white;
+    margin-bottom: 1em;
+}
+
+.card > div {
     margin-bottom: 0.5em;
 }
 
-.quest.container > .header {
+/* Quests */
+.quest.card > .header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
 }
 
-.quest.container > .fulfilled {
+.quest.card > .fulfilled {
     font-size: 0.8em;
     margin: 0px 0px 0.5em 0px;
     color: #000000AA;
 }
 
-
+/* Hero */
 .hero {
+    height: 20vh;
+    padding-bottom: 2em;
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("/hero.jpg");
+    /* Position and center the image to scale nicely on all screens */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    position: relative;
 }
 
-h2 {
-    font-weight: bolder;
+.hero h1 {
+    text-align: center;
+    color: white;
+    font-size: 1em;
+    font-weight: 600;
 }
