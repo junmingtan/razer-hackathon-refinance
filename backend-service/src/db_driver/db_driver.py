@@ -17,7 +17,7 @@ def get_skill_tree(db_conn, uid):
     Example return object:
     full_skill_tree = {
         "travel" : {                # where type is travel, food or retail
-            "novice" : [            # where category is none, novice etc
+            "novice" : [            # where category is "none", novice etc
                 {
                     "pid" : 3,
                     "name" : "",
@@ -98,3 +98,24 @@ def get_skill_tree(db_conn, uid):
     full_skill_tree['retail'] = retail
     return full_skill_tree
 
+
+def update_skill_tree(db_conn, uid, new_tree):
+    '''
+    Updates the user_perk table by inserting new uid, pid entries
+    For ease of implementation, deletes any existing entry and reinserts
+    Returns ??? #TODO: confirm return value
+    '''
+    cur = db_conn.connection.cursor()
+    for skill_types in new_tree.keys():
+        skill_type = new_tree[skill_types]
+        for category in skill_type.keys():
+            item_list = skill_type[category]
+            for item in item_list:
+                if item["is_active"]:
+                    pid = item["pid"]
+                    delete_query = "delete from user_perk where uid = %s and pid = %d" % (uid, pid)
+                    cur.execute(delete_query)
+                    insert_query = "insert into user_perk (uid, pid) values (%s, %d)" % (uid, pid)
+                    cur.execute(insert_query)
+                    db_conn.connection.commit()
+    
