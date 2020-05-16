@@ -1,0 +1,26 @@
+.progress {
+    display: flex;
+    flex-direction: row;
+    width: 80vw;
+    height: 12px;
+    border-radius: 0.5em;
+    overflow: hidden;
+    border-width: 1px;
+}
+.main {
+    height: 12px;
+    background: #7BC415;
+    transition: flex-grow 1s ease-in-out;
+}
+
+.row {
+    height: 3px;
+    display: flex;
+    flex-direction: row;
+    transition: flex-grow 1s ease-in-out;
+}
+
+.sq {
+    height: 3px;
+    width: 3px;
+}
