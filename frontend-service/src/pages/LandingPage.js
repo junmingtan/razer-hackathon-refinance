@@ -7,13 +7,7 @@ import "./LandingPage.css";
 import ProgressBar from "../components/ProgressBar";
 import Hero from "../components/Hero";
 import QuestCard from "../components/QuestCard.jsx";
-
-const Section = ({section, children}) => (
-    <div className="section">
-        <h2>{section}</h2>
-        {children}
-    </div>
-);
+import Section from "../components/Section";
 
 const defaultQuests = [
     {name: "Direct credit your salary", progress: 2, criteria: 6, exp: 500},
@@ -22,11 +16,17 @@ const defaultQuests = [
 
 const defaultUser = {
     name: "Shin Chan",
-    balance: 5683
+    balance: 5683,
+    level: 6,
+    exp_earned:500,
+    exp_required: 2000,
+    skills: []
 }
 
 
-const LandingPage = ({handleNav, quests=defaultQuests, user: {name, balance}=defaultUser}) => {
+const LandingPage = ({handleNav, quests=defaultQuests, user=defaultUser}) => {
+
+    const {name, balance} = user;
     useEffect(() => {
         fetch("/user/123")
             .then((e) => e.json())
@@ -53,7 +53,7 @@ const LandingPage = ({handleNav, quests=defaultQuests, user: {name, balance}=def
           />
         <div className="content">
             <Section section="Profile">
-                <Profile />
+                <Profile user={user}/>
             </Section>
             <Section section="Quests">
                 {quests.map(q => <QuestCard quest={q} key={q.name}/>)}

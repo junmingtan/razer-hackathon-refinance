@@ -1,6 +1,6 @@
-import React from "react";
+import React, {useState} from "react";
 import BottomNavBar from "../components/BottomNavBar";
-import QuestCard from "../components/QuestCard";
+import QuestCard, {QuestModal} from "../components/QuestCard";
 import Hero from "../components/Hero";
 import Section from "../components/Section";
 
@@ -32,6 +32,7 @@ const defaultQuests = [
 const Quests = ({quests=defaultQuests, handleNav}) => {
     const inProgress = quests.filter(q => q.progress > 0);
     const newQuests = quests.filter(q => q.progress == 0);
+    const [openQuest, setOpenQuest] = useState({})
     return (
     <div className="page">
         <Hero
@@ -50,15 +51,16 @@ const Quests = ({quests=defaultQuests, handleNav}) => {
         <div className="content">
             {inProgress.length > 0 ?
                 <Section section="In Progress" >
-                    {inProgress.map(q => <QuestCard quest={q} />)}
+                    {inProgress.map(q => <QuestCard quest={q} handleClick={() => setOpenQuest(q)}/>)}
                 </Section> : ""
             }
             {newQuests.length > 0 ?
                 <Section section="New" >
-                    {newQuests.map(q => <QuestCard quest={q} />)}
+                    {newQuests.map(q => <QuestCard quest={q} handleClick={() => setOpenQuest(q)}/>)}
                 </Section> : ""
             }
         </div>
+        <QuestModal open={!!!!Object.keys(openQuest).length} quest={openQuest} handleClose={() => setOpenQuest({})} />
         <BottomNavBar active={"quests"} handleNav={handleNav} />
     </div>
 )}
