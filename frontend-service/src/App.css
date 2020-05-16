@@ -1,0 +1,10 @@
+.page {
+    background-color: #fcfcfc;
+}
+
+.content {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 1em 1em;
+}

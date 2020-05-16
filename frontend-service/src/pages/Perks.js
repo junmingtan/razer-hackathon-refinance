@@ -1,14 +1,26 @@
 import React, { Component } from "react";
 import { images } from "../images";
-import SkillTree from "./SkillTree";
+import SkillTree from "../components/SkillTree";
 import SkillTreeNavBar from "../components/SkillTreeNavBar";
+import SkillTreeModal from "../components/SkillTreeModal";
 import "./Perks.css";
 import { GiRevolt } from "react-icons/gi";
 import BottomNavBar from "../components/BottomNavBar";
 
+/*
+image has: 
+      active: "https://image.flaticon.com/icons/svg/2695/2695674.svg",
+      inactive: "https://image.flaticon.com/icons/png/512/2695/2695678.png",
+      title: "ss",
+      description: "xx",
+      is_active: true
+ */
+
 class Perks extends Component {
   state = {
-    category: "travel"
+    category: "travel",
+    openModal: false,
+    image: {}
   };
 
   getCatergories = images => {
@@ -23,16 +35,33 @@ class Perks extends Component {
     this.setState({ category });
   };
 
+  handleOpenModal = image => {
+    this.setState({ image });
+    this.setState({ openModal: true });
+  };
+
+  handleCloseModal = () => {
+    this.setState({ openModal: false });
+  };
+
   render() {
     return (
       <React.Fragment>
         <div className="perks">
+          <SkillTreeModal
+            handleCloseModal={this.handleCloseModal}
+            open={this.state.openModal}
+            image={this.state.image}
+          />
           <SkillTreeNavBar
             values={this.getCatergories(images)}
             category={this.state.category}
             handleChangeCategory={this.handleChangeCategory}
           />
-          <SkillTree images={images[this.state.category]} />
+          <SkillTree
+            images={images[this.state.category]}
+            handleOpenModal={this.handleOpenModal}
+          />
           <div className="perks__footer">
             <div className="perks__icon">
               <GiRevolt />
