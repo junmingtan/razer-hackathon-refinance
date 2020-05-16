@@ -18,7 +18,7 @@ export default function SimpleModal({
       <div>
         <ImageCard active={image.is_active} src={image} />
         <div className="skillTreeModal__level">
-          <p>
+          <div>
             <span className="skillTreeModal__level__icon">
               <div style={{ textAlign: "center", display: "inline-block" }}>
                 <div>
@@ -30,7 +30,7 @@ export default function SimpleModal({
                 <div style={{ fontSize: "0.4em" }}>minimum level</div>
               </div>
             </span>
-          </p>
+          </div>
           <p></p>
         </div>
       </div>

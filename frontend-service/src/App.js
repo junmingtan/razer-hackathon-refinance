@@ -52,7 +52,7 @@ class App extends Component {
   };
 
   handleChangePage = page => {
-    window.scroll(0,0);
+    window.scroll(0, 0);
     this.setState({ page });
   };
   renderPage = page => {
@@ -69,8 +69,8 @@ class App extends Component {
       case "perks":
         return (
           <Perks
-            skillPoints={2}
-            userLevel={2}
+            skillPoints={3}
+            userLevel={7}
             handleNav={this.handleChangePage}
           />
         );

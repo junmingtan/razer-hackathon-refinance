@@ -32,7 +32,7 @@ export const images = {
           title: "Bus Away",
           description:
             "Enjoy 10% off golden coach when you pay with razer pay!",
-          is_active: false,
+          is_active: true,
           min_level: 1
         },
         // desert
@@ -42,7 +42,7 @@ export const images = {
           title: "Bus Away",
           description:
             "Enjoy 10% off golden coach when you pay with razer pay!",
-          is_active: false,
+          is_active: true,
           min_level: 1
         },
         // Photo
@@ -52,7 +52,7 @@ export const images = {
           title: "Bus Away",
           description:
             "Enjoy 10% off golden coach when you pay with razer pay!",
-          is_active: false,
+          is_active: true,
           min_level: 2
         },
         // sun
@@ -62,7 +62,7 @@ export const images = {
           title: "Bus Away",
           description:
             "Enjoy 10% off golden coach when you pay with razer pay!",
-          is_active: false,
+          is_active: true,
           min_level: 2
         },
         // globe
@@ -72,14 +72,14 @@ export const images = {
           title: "Bus Away",
           description:
             "Enjoy 10% off golden coach when you pay with razer pay!",
-          is_active: false,
+          is_active: true,
           min_level: 2
         }
       ]
     },
 
     {
-      category: "journey man",
+      category: "journeyman",
       elements: [
         // sail
         {
@@ -88,33 +88,38 @@ export const images = {
           title: "Bus Away",
           description:
             "Enjoy 10% off golden coach when you pay with razer pay!",
-          is_active: false,
+          is_active: true,
           min_level: 4
         },
         // backpack
         {
           active: "https://image.flaticon.com/icons/svg/722/722073.svg",
-          inactive: "https://image.flaticon.com/icons/png/512/721/721971.png"
+          inactive: "https://image.flaticon.com/icons/png/512/721/721971.png",
+          is_active: false
         },
         // pyramid
         {
           active: " https://image.flaticon.com/icons/svg/2794/2794128.svg",
-          inactive: "https://image.flaticon.com/icons/png/512/2794/2794139.png"
+          inactive: "https://image.flaticon.com/icons/png/512/2794/2794139.png",
+          is_active: false
         },
         // cruise
         {
           active: "https://image.flaticon.com/icons/svg/1857/1857314.svg",
-          inactive: "https://image.flaticon.com/icons/png/512/1857/1857392.png"
+          inactive: "https://image.flaticon.com/icons/png/512/1857/1857392.png",
+          is_active: false
         },
         // Passport
         {
           active: "https://image.flaticon.com/icons/svg/652/652456.svg",
-          inactive: "https://image.flaticon.com/icons/png/512/652/652497.png"
+          inactive: "https://image.flaticon.com/icons/png/512/652/652497.png",
+          is_active: false
         },
         // Submarine
         {
           active: "https://image.flaticon.com/icons/svg/1816/1816058.svg",
-          inactive: "https://image.flaticon.com/icons/png/512/1816/1816070.png"
+          inactive: "https://image.flaticon.com/icons/png/512/1816/1816070.png",
+          is_active: false
         }
       ]
     },
@@ -124,7 +129,8 @@ export const images = {
       elements: [
         {
           active: "https://image.flaticon.com/icons/svg/571/571949.svg",
-          inactive: "https://image.flaticon.com/icons/png/512/587/587609.png"
+          inactive: "https://image.flaticon.com/icons/png/512/587/587609.png",
+          is_active: false
         }
       ]
     }
