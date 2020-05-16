@@ -15,16 +15,14 @@ def getSkillTree(account_id):
 
     return jsonify(result)
 
-@skilltree_api.route('/skilltree/', methods=['POST'])
-def getAccount(account_id):
-    user_id = request.json['user_id']
-    skilltree = request.json['skilltree']
+@skilltree_api.route('/skilltree/<string:account_id>/<string:perk_id>', methods=['POST'])
+def updateSkillTree(account_id, perk_id):
 
     result = None
 
     ###
     # Call database client here
     ###
-    db_driver.update_skill_tree(uid=user_id, new_tree=skilltree)
+    db_driver.update_skill_tree(uid=account_id, pid=int(perk_id))
 
     return jsonify(result)

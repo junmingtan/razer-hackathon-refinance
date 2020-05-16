@@ -31,13 +31,19 @@ def home():
                 </head>
                 <body>
                     <b> POST /user/create </b> <br>
-                    Request body: {firstname, lastname} <br>
+                    Request body: {firstname, lastname, email, password} <br>
                     Creates a new user
                     <br><br>
                     <b> GET /user/&ltuser_id&gt </b> <br>
                     Get user by user_id
                     <br><br>
-                    
+                    <b> GET /user/all </b> <br>
+                    Gets all users stored in db_lite for debugging
+                    <br><br>
+                    <b> POST /login </b> <br>
+                    Request body: {email, password} <br>
+                    Gets mambuid, firstname and lastname
+                    <br><br>
                     <b> POST /account/create </b> <br>
                     Request body: {user_id} <br>
                     Creates a new account for user with user_id
@@ -75,4 +81,4 @@ def home():
 if __name__ == "__main__":
     # Setting debug to True enables debug output. This line should be
     # removed before deploying a production app.
-    application.run(host="0.0.0.0", threaded=True, debug=True)
+    application.run(host="0.0.0.0", threaded=False, debug=True)

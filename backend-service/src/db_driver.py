@@ -75,17 +75,17 @@ class Db_driver:
         user_perk_result = list(cur.fetchall())
         user_perk_result = {item for item in user_perk_result} # creates a set of perk ids 
 
-        travel_query = "select * from perk where type = 'travel'"
+        travel_query = "select * from perk where `type` = 'travel'"
         cur.execute(travel_query)
         travel_result = list(cur.fetchall())
         travel = helper(travel_result, user_perk_result)
 
-        food_query = "select * from perk where type = 'food'"
+        food_query = "select * from perk where `type` = 'food'"
         cur.execute(food_query)
         food_result = list(cur.fetchall())
         food = helper(food_result, user_perk_result)
 
-        retail_query = "select * from perk where type = 'retail'"
+        retail_query = "select * from perk where `type` = 'retail'"
         cur.execute(retail_query)
         retail_result = list(cur.fetchall())
         retail = helper(retail_result, user_perk_result)
@@ -97,25 +97,15 @@ class Db_driver:
         return full_skill_tree
 
 
-    def update_skill_tree(self, uid, new_tree):
+    def update_skill_tree(self, uid, pid):
         '''
         Updates the user_perk table by inserting new uid, pid entries
-        For ease of implementation, deletes any existing entry and reinserts
         Returns ??? #TODO: confirm return value
         '''
         cur = self.db_conn.connection.cursor()
-        for skill_types in new_tree.keys():
-            skill_type = new_tree[skill_types]
-            for category in skill_type.keys():
-                item_list = skill_type[category]
-                for item in item_list:
-                    if item["is_active"]:
-                        pid = item["pid"]
-                        delete_query = "delete from user_perk where uid = '%s' and pid = %d" % (uid, pid)
-                        cur.execute(delete_query)
-                        insert_query = "insert into user_perk (uid, pid) values ('%s', %d)" % (uid, pid)
-                        cur.execute(insert_query)
-                        self.db_conn.connection.commit()
+        insert_query = "insert into user_perk (uid, pid) values ('%s', %d)" % (uid, pid)
+        cur.execute(insert_query)
+        self.db_conn.connection.commit()
         return None
 
 
@@ -144,7 +134,7 @@ class Db_driver:
 
     def get_user(self, uid):
         cur = self.db_conn.connection.cursor()
-        user_query = "select * from 'user' where uid = '%s'" % (uid)
+        user_query = '''select * from `user` where uid = "%s"''' % (uid)
         cur.execute(user_query)
         user = list(cur.fetchall())[0]
         return user
@@ -155,13 +145,25 @@ class Db_driver:
         returns #TODO: discuss on return type
         '''
         cur = self.db_conn.connection.cursor()
-        delete_query = "delete from 'user' where uid = '%s'" % (uid)
+        delete_query = '''delete from `user` where uid = "%s"''' % (uid)
         cur.execute(delete_query)
-        insert_query = "insert into 'user' (uid, first_name, last_name, user_level, exp_earned) values (%s, %s, %s, %d, %d)"
-        data = (new_user["user_id"], new_user["first_name"], new_user["last_name"], new_user["user_level"], new_user["exp_earned"])
+        insert_query = '''insert into `user` (uid, first_name, last_name, user_level, exp_earned, skill_point) values (%s, %s, %s, %d, %d, %d)'''
+        data = (new_user["user_id"], new_user["first_name"], new_user["last_name"], new_user["user_level"], new_user["exp_earned"], new_user["skill_point"])
         cur.execute(insert_query, data)
         self.db_conn.commit()
         return None
-        
+
+    def update_user_quest(self, new_user_quest):
+        cur = self.db_conn.connection.cursor()
+        quest_query = "select * from quest where qid = %d" % (new_user_quest["qid"])
+        cur.execute(quest_query)
+        quest = list(cur.fetchall())[0]
+        clear_condition = quest["clear_condition"]
+        insert_query = '''insert into user_quest (uid, qid, progress, clear_condition, completed) values (%s, %d, %d, %d, %d)'''
+        data = (new_user_quest["uid"], new_user_quest["qid"], new_user_quest["progress"], clear_condition, new_user_quest["completed"])
+        cur.execute(insert_query, data)
+        self.db_conn.commit()
+        return None
+
 
 db_driver = Db_driver()
