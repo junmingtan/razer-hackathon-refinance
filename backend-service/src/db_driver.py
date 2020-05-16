@@ -134,7 +134,7 @@ class Db_driver:
 
     def get_user_quest(self, uid):
         cur = self.db_conn.connection.cursor()
-        user_quest_query = "select uid, pid, progress, clear_condition, completed from user_quest where uid = '%s'" % (uid)
+        user_quest_query = "select uid, qid, progress, clear_condition, completed from user_quest where uid = '%s'" % (uid)
         cur.execute(user_quest_query)
         user_quest_result = list(cur.fetchall())
         for item in user_quest_result:
