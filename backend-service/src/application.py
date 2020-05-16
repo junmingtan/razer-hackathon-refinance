@@ -4,12 +4,14 @@ application = Flask(__name__)
 
 from api.user_controller import user_api
 from api.account_controller import account_api
+from api.fwd_controller import fwd_api
 from db_driver.db_driver import db_setup
 
 db = db_setup(application) # Returns connection object if successful, else None
 
 application.register_blueprint(user_api)
 application.register_blueprint(account_api)
+application.register_blueprint(fwd_api)
 
 @application.route('/health', methods=['GET'])
 def health():
@@ -41,6 +43,10 @@ def home():
                     <br><br>
                     <b> GET /accounts/&ltuser_id&gt </b> <br>
                     Get all accounts owned by user with user_id
+                    <br><br>
+                    <b> POST /fwd </b> <br>
+                    Request body: {base64image} <br>
+                    Get nric fields in base64 encoded image
                 </body>
             </html>
     """
