@@ -1,7 +1,7 @@
 .progress {
     display: flex;
     flex-direction: row;
-    width: 80vw;
+    width: 100%;
     height: 12px;
     border-radius: 0.5em;
     overflow: hidden;
@@ -9,8 +9,12 @@
 }
 .main {
     height: 12px;
-    background: #7BC415;
     transition: flex-grow 1s ease-in-out;
+}
+
+.test {
+    color: #2c6ec4FF;
+    color: #366FBF88
 }
 
 .row {

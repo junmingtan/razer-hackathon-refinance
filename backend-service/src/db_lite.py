@@ -36,8 +36,9 @@ class DbLite:
         c = conn.cursor()
         try:
             c.execute('SELECT * FROM users WHERE email = ?', (email,))
+            result = c.fetchall()
             conn.close()
-            return (True, c.fetchall())
+            return (True, result)
         except Error as e:
             conn.close()
             return (False, e)
@@ -47,8 +48,9 @@ class DbLite:
         c = conn.cursor()
         try:
             c.execute('SELECT * FROM users')
+            result = c.fetchall()
             conn.close()
-            return (True, c.fetchall())
+            return (True, result)
         except Error as e:
             conn.close()
             return (False, e)
