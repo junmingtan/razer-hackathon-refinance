@@ -23,9 +23,9 @@ class App extends Component {
       default:
         return <Home handleChangePage={this.handleChangePage} />;
       case "landing page":
-        return <LandingPage />;
+        return <LandingPage handleNav={this.handleChangePage} />;
       case "perks":
-        return <Perks />;
+        return <Perks handleNav={this.handleChangePage} />;
     }
   };
   render() {
