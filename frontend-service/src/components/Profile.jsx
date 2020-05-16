@@ -9,7 +9,7 @@ const Skill = ({name, icon}) => (
 
 const Profile = ({level, experience, skills}) => {
     const [progress, setProgress] = useState(80);
-    return (<div className="container">
+    return (<div className="card">
         <div className="level">
             Level {level} Grandmaster
         </div>
