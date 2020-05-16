@@ -52,33 +52,27 @@ class CreateAccountCard extends Component {
           <Grid item className="createAccountCard__header">
             Create a new account
           </Grid>
-          <Grid
-            container
-            item
-            direction="row"
-            justify="center"
-            alignItems="center"
-            spacing={2}
-          >
-            <Grid item xs={6}>
-              <TextField
-                label="First Name"
-                variant="outlined"
-                className="createAccountCard__textField"
-                onChange={this.handleFirstNameChange}
-                value={this.state.firstName}
-              />
-            </Grid>
-            <Grid item xs={6}>
-              <TextField
-                label="Last Name"
-                variant="outlined"
-                className="createAccountCard__textField"
-                onChange={this.handleLastNameChange}
-                value={this.state.lastName}
-              />
-            </Grid>
+
+          <Grid item xs={12} className="createAccountCard__textField">
+            <TextField
+              label="First Name"
+              variant="outlined"
+              className="createAccountCard__textField"
+              onChange={this.handleFirstNameChange}
+              value={this.state.firstName}
+            />
           </Grid>
+
+          <Grid item xs={12} className="createAccountCard__textField">
+            <TextField
+              label="Last Name"
+              variant="outlined"
+              className="createAccountCard__textField"
+              onChange={this.handleLastNameChange}
+              value={this.state.lastName}
+            />
+          </Grid>
+
           <Grid item xs={12} className="createAccountCard__textField">
             <TextField
               label="Address"
@@ -120,6 +114,16 @@ class CreateAccountCard extends Component {
             >
               Submit
             </Button>
+          </Grid>
+
+          <Grid item>
+            <div
+              onClick={() => this.props.handleChangeCard()}
+              className="createAccountCard__footer"
+            >
+              <p>Have an account?</p>
+              <p>Log in</p>
+            </div>
           </Grid>
         </Grid>
       </Paper>

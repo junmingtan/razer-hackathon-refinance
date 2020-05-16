@@ -1,9 +1,17 @@
 import React, { Component } from "react";
 import CreateAccountCard from "../components/CreateAccountCard";
+import LoginCard from "../components/LoginCard";
 import { Grid } from "@material-ui/core";
 
 class Home extends Component {
-  state = {};
+  state = {
+    login: true
+  };
+
+  handleChangeCard = () => {
+    this.setState({ login: !this.state.login });
+  };
+
   render() {
     return (
       <React.Fragment>
@@ -19,7 +27,17 @@ class Home extends Component {
             className="home__card"
           >
             <Grid item>
-              <CreateAccountCard />
+              {this.state.login ? (
+                <LoginCard
+                  handleChangePage={this.props.handleChangePage}
+                  handleChangeCard={this.handleChangeCard}
+                />
+              ) : (
+                <CreateAccountCard
+                  handleChangePage={this.props.handleChangePage}
+                  handleChangeCard={this.handleChangeCard}
+                />
+              )}
             </Grid>
           </Grid>
         </Grid>

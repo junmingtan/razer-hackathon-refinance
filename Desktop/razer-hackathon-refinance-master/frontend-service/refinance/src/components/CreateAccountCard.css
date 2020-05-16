@@ -1,9 +1,13 @@
 .createAccountCard {
-  min-width: 300px;
+  min-width: 270px;
   max-width: 30%;
-  height: 500px;
-  margin: 10px;
+  height: 650px;
+  margin: 30px 10px 10px 10px;
   padding: 20px;
+}
+
+.createAccountCard--login {
+  height: 400px;
 }
 
 .createAccountCard__header {
@@ -14,4 +18,18 @@
 
 .createAccountCard__textField {
   width: 100%;
+}
+
+.createAccountCard__footer {
+  position: relative;
+  color: #575757;
+  top: 20px;
+  font-size: 0.85em;
+  text-align: center;
+}
+
+.createAccountCard__footer:hover {
+  cursor: pointer;
+  color: #000000;
+  transition: 0.4s;
 }
