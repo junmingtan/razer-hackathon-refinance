@@ -16,6 +16,20 @@ def health():
     """
     return jsonify(success=True, status='Happy!')
 
+@application.route('/', methods=['GET'])
+def home():
+    html = """
+            <html>
+                <body>
+                    POST /user/create {firstname, lastname}
+                    <br>
+                    GET /user/&ltuser_id&gt
+                </body>
+            </html>
+    """
+    return html
+
+
 # run the app.
 if __name__ == "__main__":
     # Setting debug to True enables debug output. This line should be
