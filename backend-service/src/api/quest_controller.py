@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from db_driver import db
+from db_driver import db_driver
 
 quest_api = Blueprint('quest_api', __name__)
 

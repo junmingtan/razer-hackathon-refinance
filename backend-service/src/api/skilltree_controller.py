@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-from db_driver import get_skill_tree
+from db_driver import db_driver
 
 skilltree_api = Blueprint('skilltree_api', __name__)
 

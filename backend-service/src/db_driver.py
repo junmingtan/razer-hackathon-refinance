@@ -126,7 +126,7 @@ class db_driver:
                         cur.execute(delete_query)
                         insert_query = "insert into user_perk (uid, pid) values ('%s', %d)" % (uid, pid)
                         cur.execute(insert_query)
-                        db_conn.connection.commit()
+                        self.db_conn.connection.commit()
 
 
     def get_quest(self):
@@ -170,4 +170,5 @@ class db_driver:
         insert_query = "insert into 'user' (uid, first_name, last_name, user_level, exp_earned) values (%s, %s, %s, %d, %d)"
         data = (new_user["user_id"], new_user["first_name"], new_user["last_name"], new_user["user_level"], new_user["exp_earned"])
         cur.execute(insert_query, data)
+        self.db_conn.commit()
         
