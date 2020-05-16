@@ -3,6 +3,7 @@ import { images } from "../images";
 import SkillTree from "./SkillTree";
 import "./Perks.css";
 import { GiRevolt } from "react-icons/gi";
+import BottomNavBar from "../components/BottomNavBar";
 
 class Perks extends Component {
   state = {};
@@ -20,6 +21,7 @@ class Perks extends Component {
             </div>
           </div>
         </div>
+        <BottomNavBar active="perks" handleNav={this.props.handleNav}/>
       </React.Fragment>
     );
   }
