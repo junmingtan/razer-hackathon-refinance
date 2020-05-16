@@ -13,7 +13,12 @@ function calcFadeIn(offsetHeight, bottom) {
     return Math.min(1, progress)
 }
 
-const Hero = ({heroContent, navbarContent}) => {
+const Hero = ({
+                  heroContent,
+                  navbarContent,
+                  backgroundImage="/hero.jpg",
+                  topBarStyle={color: "white", backgroundColor:" #463657"}
+}) => {
     const ref = useRef()
     useEffect(() => {
         document.onscroll = (e) => {
@@ -26,13 +31,13 @@ const Hero = ({heroContent, navbarContent}) => {
     const [fadeIn, setFadeIn] = useState(0);
     return (
         <React.Fragment>
-        <div className="hero" ref={ref}>
+        <div className="hero" ref={ref} style={{backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("${backgroundImage}")`}}>
             {/*<VisaCard />*/}
             <div className="hero-content" style={{marginTop: `${fadeOut}px`, opacity: `${Math.max(0, 1 - (fadeOut / 100))}`}}>
                 {heroContent}
             </div>
         </div>
-        <div className="top_bar" style={{opacity: `${fadeIn}`}}>
+        <div className="top_bar" style={{opacity: `${fadeIn}`, ...topBarStyle}}>
             <div style={{marginLeft: `${20 - (fadeIn - 0.5) * 2 * 10}px`}}>
                 {navbarContent}
             </div>
