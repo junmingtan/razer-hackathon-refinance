@@ -63,10 +63,10 @@ class Perks extends Component {
   };
 
   render() {
-    console.log(this.props);
     return (
       <React.Fragment>
         <Hero
+          backgroundImage={"/hero_perks.jpg"}
           heroContent={
             <React.Fragment>
               <IconInfo

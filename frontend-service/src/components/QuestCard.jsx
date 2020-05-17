@@ -6,21 +6,21 @@ import Fade from '@material-ui/core/Fade';
 
 import "./QuestCard.css";
 
-const QuestCard = ({quest:{name, exp, progress, criteria}, handleClick}) => {
+const QuestCard = ({quest:{name, exp, progress, clear_condition}, handleClick}) => {
     return (
     <div className="quest card" key={name} onClick={handleClick}>
         <div className="header">
             <p>{name}</p>
             <p>{exp} EXP</p>
         </div>
-        <p className="fulfilled">Completed: {progress} of {criteria}</p>
-        <ProgressBar frontColor={progress > 0 ? "#7BC415FF" : "#2c6ec4FF"} backColor={progress > 0 ? "#AEFF0088" : "#A2EEFF88"} progress={progress / criteria * 100} />
+        <p className="fulfilled">Completed: {progress} of {clear_condition}</p>
+        <ProgressBar frontColor={progress > 0 ? "#7BC415FF" : "#2c6ec4FF"} backColor={progress > 0 ? "#AEFF0088" : "#A2EEFF88"} progress={progress / clear_condition * 100} />
     </div>
 )}
 
 export const QuestModal = ({open, handleClose, quest, onCollect=() => console.log("collected ", quest)}) => {
-    const {name, exp, progress, criteria, description, completed} = quest
-    const available = !completed && progress === criteria;
+    const {name, exp, progress, clear_condition, description, completed} = quest
+    const available = !completed && progress === clear_condition;
     return (
     <Modal
         aria-labelledby="transition-modal-title"
@@ -39,8 +39,8 @@ export const QuestModal = ({open, handleClose, quest, onCollect=() => console.lo
                     <h2>{name}</h2>
                 </div>
                 <div>{description}</div>
-                <p>Completed: {progress} of {criteria}</p>
-                <ProgressBar frontColor={progress > 0 ? "#7BC415FF" : "#2c6ec4FF"} backColor={progress > 0 ? "#AEFF0088" : "#A2EEFF88"} progress={progress / criteria * 100} />
+                <p>Completed: {progress} of {clear_condition}</p>
+                <ProgressBar frontColor={progress > 0 ? "#7BC415FF" : "#2c6ec4FF"} backColor={progress > 0 ? "#AEFF0088" : "#A2EEFF88"} progress={progress / clear_condition * 100} />
                 <Button
                     variant="contained"
                     color="secondary"

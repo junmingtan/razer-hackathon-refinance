@@ -21,11 +21,21 @@ const defaultQuests = [
 
 const defaultUser = {
   name: "Shin Chan",
-  balance: 0,
+  balance: 5683,
   level: 1,
-  exp_earned: 0,
+  exp_earned: 500,
   exp_required: 2000,
-  skills: []
+  skills: [],
+  quests: [
+    { name: "Make your first deposit", progress: 0, criteria: 1, exp: 500 },
+    { name: "Direct credit your salary", progress: 2, criteria: 6, exp: 500 },
+    {
+      name: "Save into fixed deposits",
+      progress: 2200,
+      criteria: 10000,
+      exp: 1000
+    }
+  ]
 };
 
 // const LandingPage = ({
@@ -61,36 +71,48 @@ const LandingPage = ({
     setModalOpen(true);
   };
   return (
-    <div className="page">
-      <Hero
-        heroContent={
-          <div>
-            <h1>Welcome back, {name}</h1>
-            <p>${balance}</p>
-          </div>
-        }
-        navbarContent={
-          <div>
-            <p>${name}</p>
-            <p>${balance}</p>
-          </div>
-        }
-      />
-      <div className="content">
-        <Section section="Profile" onClick={() => handleNav("perks")}>
-          <Profile user={user} />
-        </Section>
-        <Section section="Quests">
-          {quests
-            .filter(q => q.progress > 0 && !q.completed)
-            .map(q => (
-              <QuestCard
-                quest={q}
-                key={q.name}
-                handleClick={() => handleClick(q)}
-              />
-            ))}
-        </Section>
+    <div>
+      <div className="page">
+        <Hero
+          heroContent={
+            <div>
+              <h1>Welcome back, {name}</h1>
+              <p>${balance}</p>
+            </div>
+          }
+          navbarContent={
+            <div>
+              <p>${name}</p>
+              <p>${balance}</p>
+            </div>
+          }
+        />
+        <div className="content">
+          <Section section="Profile" onClick={() => handleNav("perks")}>
+            <Profile user={user} />
+          </Section>
+          <Section section="Quests">
+            {user.quests
+              .filter(q => q.progress > 0 && !q.completed)
+              .map(q => (
+                <QuestCard
+                  quest={q}
+                  key={q.name}
+                  handleClick={() => handleClick(q)}
+                />
+              ))}
+          </Section>
+        </div>
+        <QuestModal
+          open={modalOpen}
+          quest={openQuest}
+          handleClose={() => setModalOpen(false)}
+          onCollect={() => {
+            handleCollectQuest(openQuest);
+            setModalOpen(false);
+          }}
+        />
+        <BottomNavBar active={"home"} handleNav={handleNav} />
       </div>
       <QuestModal
         open={modalOpen}
