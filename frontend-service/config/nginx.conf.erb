@@ -34,14 +34,14 @@ http {
     keepalive_timeout 5;
     client_max_body_size <%= ENV['NGINX_CLIENT_MAX_BODY_SIZE'] || 1 %>M;
 
-    root ~/build; # path to your app
+    root <%= ENV['APP_ROOT'] || "~/build" %>; # path to your app
       index index.html;
 
-      location ~ "/(user|quest|accounts|login|account|fwd|skilltree).*/" {
+      location <%= ENV['APP_BACKEND_LOCATION'] || "~ /(user|quest|accounts|login|account|fwd|skilltree).*/"%>{
         proxy_pass http://backend-server;
       }
 
-      location = / {
+      location  <%= ENV['APP_FRONTEND_LOCATION'] || "= /"%> {
         try_files $uri /index.html;
       }
 
