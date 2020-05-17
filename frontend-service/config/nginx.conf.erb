@@ -17,7 +17,7 @@ http {
 
   log_format l2met 'measure#nginx.service=$request_time request_id=$http_x_request_id';
   access_log <%= ENV['NGINX_ACCESS_LOG_PATH'] || 'logs/nginx/access.log' %> l2met;
-#   error_log <%= ENV['NGINX_ERROR_LOG_PATH'] || 'logs/nginx/error.log' %>;
+  error_log <%= ENV['NGINX_ERROR_LOG_PATH'] || 'logs/nginx/error.log' %>;
 
 
   include mime.types;
@@ -37,7 +37,7 @@ http {
     root /build; # path to your app
       index index.html;
 
-      location ~ "/*/" {
+      location ~ "/.+/" {
         proxy_pass http://backend-server;
       }
 
