@@ -37,12 +37,13 @@ http {
     root /build; # path to your app
       index index.html;
 
-      location ~ "/.+/" {
+      location ~ "/(user|quest|accounts|login|account|fwd|skilltree).*/" {
         proxy_pass http://backend-server;
       }
 
-      location = / {
+      location / {
         try_files $uri /index.html;
       }
+
   }
 }
