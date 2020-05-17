@@ -34,7 +34,7 @@ http {
     keepalive_timeout 5;
     client_max_body_size <%= ENV['NGINX_CLIENT_MAX_BODY_SIZE'] || 1 %>M;
 
-    root /build; # path to your app
+    root ~/build; # path to your app
       index index.html;
 
       location ~ "/(user|quest|accounts|login|account|fwd|skilltree).*/" {
