@@ -1,3 +1,3 @@
 yarn install
 yarn build
-yarn heroku-deploy
+web: bin/start-nginx-solo
