@@ -17,7 +17,7 @@ http {
 
   log_format l2met 'measure#nginx.service=$request_time request_id=$http_x_request_id';
   access_log <%= ENV['NGINX_ACCESS_LOG_PATH'] || 'logs/nginx/access.log' %> l2met;
-  error_log <%= ENV['NGINX_ERROR_LOG_PATH'] || 'logs/nginx/error.log' %>;
+#   error_log <%= ENV['NGINX_ERROR_LOG_PATH'] || 'logs/nginx/error.log' %>;
 
 
   include mime.types;
@@ -29,7 +29,7 @@ http {
     }
 
   server {
-      listen 80;
+      listen <%= ENV['PORT'] || 80 %>;
     server_name _;
     keepalive_timeout 5;
     client_max_body_size <%= ENV['NGINX_CLIENT_MAX_BODY_SIZE'] || 1 %>M;
